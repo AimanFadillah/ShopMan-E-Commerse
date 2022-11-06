@@ -1,0 +1,90 @@
+* {
+    margin:0;
+    padding: 0;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #ddd;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    width: 400px;
+}
+
+/* main */
+
+.navbar{
+    display: flex;
+    padding: 30px;  
+    background-color: #ee4d2d;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.navbar h1{
+    font-weight: 100;
+}
+
+.navbar ul li{
+    background-color: green;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.navbar a{
+    color: white;
+    font-size: 20px;
+}
+
+/* main */
+
+.produk{
+    display: flex;
+    margin: 40px auto;
+    width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.penjualan{
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.list_produk h1{
+    margin-left: 10px;
+}
+
+.list_produk h1.harga{
+    font-size: 50px;
+    color: #ee4d2d;
+}
+
+.list_akhir {
+    background-color: #ee4d2d;
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.list_akhir a.tombol_beli{
+    color: white;
+    font-weight: bold;
+}
