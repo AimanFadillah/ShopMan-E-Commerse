@@ -14,7 +14,7 @@ $produk = ambil("SELECT * FROM produk");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>ShopMan</title>
 </head>
 <body>
@@ -24,7 +24,7 @@ $produk = ambil("SELECT * FROM produk");
         <h1>ShopMan</h1>
         
         <ul>
-            <li><a href="#">Login</a></li>
+            <li><a href="tambah.php">Tambah</a></li>
         </ul>
     </div>
 
@@ -36,9 +36,10 @@ $produk = ambil("SELECT * FROM produk");
             <?php foreach($produk as $produknya) : ?>
             <li>
                 <div class="isi">
-                    <a href="#  ">
+                    <a href="produk.php?id=<?= $produknya["id"] ?>">
                         <img src="jeruk.jpg">
-                        <h1><?= $produknya["produk"] ?></h1>
+                        <h4 ><?= $produknya["produk"] ?></h4>
+                        <h3><?= $produknya["harga"] ?></h3>
                     </a>
                 </div>
             </li>
