@@ -5,7 +5,10 @@
 
     $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
 
+    $nama_produk = $produk["produk"];
+    $id_komen = $produk["id_komen"];
 
+    $komentar = ambil("SELECT * FROM komentar_$nama_produk" . "_$id_komen");
 ?>
 
 <!DOCTYPE html>
@@ -24,15 +27,17 @@
   <div class="navbar">
         <h1>ShopMan</h1>
         
-        <ul>
-            <li><a href="tambah.php">Tambah</a></li>
+        <ul class="pilihan">
+            <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>&komen=<?= $produk["id_komen"] ?>&produk=<?= $produk["produk"] ?>" 
+            onclick="return confirm('Yakin')">Delete</a></li>
+            <li class="tambah"><a href="tambah.php">Tambah</a></li>
         </ul>
     </div>
 
     <!-- main -->
 
     <div class="produk">
-        <img src="jeruk.jpg" alt="jeruk">
+        <img src="img/<?= $produk["img"] ?>" alt="jeruk">
         <div class="penjualan">
             <div class="list_produk">
                 <h1 class="judul"><?= $produk["produk"] ?></h1>
@@ -43,6 +48,24 @@
                 <div  class="tombol_beli"><a href="#">Beli</a></div>
             </div>
         </div>
+    </div>
+    
+    </div>
+
+    <!-- tentang produk -->
+    <div class="komentar">
+        <div class="list_komentar">
+            <div class="kiri"><h1>Komentar</h1></div>
+            <div class="kanan"><a>Tambah</a></div>
+        </div>
+        <ul class="isi_komentar">
+            <?php foreach($komentar as $komen) : ?>
+            <li>
+                <h3><?= $komen["nama"] ?></h3>
+                <p><?= $komen["komentar"] ?></p>
+            </li>
+            <?php endforeach ; ?>
+        </ul>
     </div>
 
 

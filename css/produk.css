@@ -10,6 +10,7 @@ body{
 
 li{
     list-style: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 a{
@@ -38,17 +39,31 @@ img{
     font-weight: 100;
 }
 
-.navbar ul li{
+.navbar ul.pilihan{
+    display: flex;
+}
+
+.navbar ul.pilihan li.tambah{
     background-color: green;
     box-sizing: border-box;
     border-radius: 10px;
     padding: 10px;
+    margin-right: 10px;
+}
+
+.navbar ul.pilihan li.delete{
+    background-color: red;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
 }
 
 .navbar a{
     color: white;
     font-size: 20px;
 }
+
 
 /* main */
 
@@ -95,6 +110,7 @@ img{
 .list_akhir .tombol_beli{
     font-size: 18px;
     background-color: #ee4d2d;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     width: 50%;
     margin-right: 10px;
     border-radius: 5px;
@@ -110,4 +126,44 @@ img{
     border: 1px solid black;
     border-radius: 5px;
     background-color: black;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
+/* komentar */
+
+.komentar{
+    width: 80%;
+    margin: 0px auto;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.list_komentar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list_komentar .kanan{
+    padding: 10px;
+    background-color: green;
+    border-radius: 5px;    
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    color: white;
+
+}
+
+ul.isi_komentar{
+    margin-top: 15px;
+}
+
+ul.isi_komentar li{
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: gray;
+}
+

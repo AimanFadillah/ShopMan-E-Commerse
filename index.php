@@ -37,7 +37,7 @@ $produk = ambil("SELECT * FROM produk");
             <li>
                 <div class="isi">
                     <a href="produk.php?id=<?= $produknya["id"] ?>">
-                        <img src="jeruk.jpg">
+                        <img src="img/<?= $produknya["img"] ?>">
                         <h4 ><?= $produknya["produk"] ?></h4>
                         <h3><?= $produknya["harga"] ?></h3>
                     </a>
