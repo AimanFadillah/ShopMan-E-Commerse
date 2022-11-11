@@ -14,14 +14,6 @@ if(isset($_POST["kirim"]) ){
     }
 }
 
-// echo "<script>
-// document.location.href = 'index.php' ;
-// </script>";
-
-// echo "<script>
-// alert('gagal')
-// </script>";
-
 ?>
 
 <!DOCTYPE html>

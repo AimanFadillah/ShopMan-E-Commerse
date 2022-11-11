@@ -24,6 +24,7 @@ function tambah($tambah){
         return false;
     }
 
+    // menambahkan tabel komen
     $komen = "CREATE TABLE komentar_$produk"."_$id_komen"."(
         id INT PRIMARY KEY AUTO_INCREMENT,
         nama VARCHAR(50),
@@ -32,7 +33,7 @@ function tambah($tambah){
 
     mysqli_query($conn,$komen);
     
-
+    // menambahkan isi dari tabel produk
     $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$id_komen')";
     mysqli_query($conn,$data);
 
