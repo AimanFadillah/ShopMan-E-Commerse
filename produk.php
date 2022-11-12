@@ -30,6 +30,7 @@
         <ul class="pilihan">
             <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>&komen=<?= $produk["id_komen"] ?>&produk=<?= $produk["produk"] ?>" 
             onclick="return confirm('Yakin')">Delete</a></li>
+            <li class="ganti"><a href="ganti.php?id=<?= $produk["id"] ?>">Edit</a></li>
             <li class="tambah"><a href="tambah.php">Tambah</a></li>
         </ul>
     </div>
