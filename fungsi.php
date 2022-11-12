@@ -98,4 +98,32 @@ function hapus($id,$komen,$produk){
     return mysqli_affected_rows($conn);
 }
 
+function ganti($data){
+    global $conn;
+    $id = $data["id"];
+    $produk = htmlspecialchars( $data["nama"] );
+    $harga = htmlspecialchars( $data["harga"] );
+    $keterangan = htmlspecialchars( $data["keterangan"] );
+    $gambarlama = htmlspecialchars( $data["gambarlama"] );
+
+    if($_FILES["gambar"]["error"] === 4){
+        $gambar = $gambarlama;
+    }else{
+        $gambar = upload();
+    }
+
+    $isi = "UPDATE produk SET
+            produk = '$produk',
+            harga = '$harga',
+            keterangan = '$keterangan',
+            img = '$gambar'
+            WHERE id = $id;
+            ";
+
+    mysqli_query($conn,$isi);
+
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>

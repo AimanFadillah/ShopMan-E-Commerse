@@ -43,7 +43,7 @@ body{
 .form input[type='file']{
     border:none;
     background-color: grey;
-    padding: 3px;
+    padding: 6px;
 }
 
 .form input:focus{

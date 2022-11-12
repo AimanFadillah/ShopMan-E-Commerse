@@ -51,6 +51,15 @@ img{
     margin-right: 10px;
 }
 
+.navbar ul.pilihan li.ganti{
+    background-color: blue;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
 .navbar ul.pilihan li.delete{
     background-color: red;
     box-sizing: border-box;
