@@ -8,7 +8,7 @@ $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
 if( isset( $_POST["kirim"] ) ){
     if(ganti($_POST) > 0){
         echo "<script>
-        document.location.href = 'index.php' ;
+        document.location.href = 'produk.php?id=$id' ;
         </script>";
     }else{
         echo "<script>
