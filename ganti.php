@@ -8,7 +8,7 @@ $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
 if( isset( $_POST["kirim"] ) ){
     if(ganti($_POST) > 0){
         echo "<script>
-        document.location.href = 'index.php' ;
+        document.location.href = 'produk.php?id=$id' ;
         </script>";
     }else{
         echo "<script>
@@ -27,13 +27,13 @@ if( isset( $_POST["kirim"] ) ){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/ganti.css">
-    <title>Edit | Barang</title>
+    <title>Edit | <?= $produk["produk"] ?></title>
 </head>
 <body>
     
     <!-- container -->
     <div class="container">
-        <h1>Edit</h1>
+        <h1>Edit Barang</h1>
         <form action="" method="post" enctype="multipart/form-data">
         <div class="mid">
             <img src="img/<?= $produk["img"] ?>" alt="gambar"><br>

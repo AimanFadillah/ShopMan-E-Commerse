@@ -64,6 +64,10 @@ img{
     height: 150px;
 }
 
+.container textarea:focus{
+    outline: none;
+}
+
 .container .kirim {
     background-color: green;
     border-radius: 3px;

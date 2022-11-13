@@ -25,7 +25,7 @@
   <!-- navbar -->
 
   <div class="navbar">
-        <h1>ShopMan</h1>
+        <a href="index.php"><h1>ShopMan</h1><a>
         
         <ul class="pilihan">
             <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>&komen=<?= $produk["id_komen"] ?>&produk=<?= $produk["produk"] ?>" 
@@ -57,7 +57,8 @@
     <div class="komentar">
         <div class="list_komentar">
             <div class="kiri"><h1>Komentar</h1></div>
-            <div class="kanan"><a>Tambah</a></div>
+            <div class="kanan"><a href="tambahKomen.php?produk=<?= $produk["produk"] ?>&id_komen=<?= $produk["id_komen"] ?>&id=<?= $produk["id"] ?>"
+            class="tambahKomen">Tambah</a></div>
         </div>
         <ul class="isi_komentar">
             <?php foreach($komentar as $komen) : ?>
