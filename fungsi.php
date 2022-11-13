@@ -126,4 +126,19 @@ function ganti($data){
     return mysqli_affected_rows($conn);
 }
 
+function tambahKomentar($data){
+    global $conn;
+    $produk = $_POST["produk"] ;
+    $id_komen = $_POST["id_komen"] ;
+    $nama = htmlspecialchars( $data["nama"] );
+    $komen = htmlspecialchars( $data["komentar"] );
+
+    $isi = "INSERT INTO komentar_$produk" . "_$id_komen VALUES ('','$nama','$komen');";
+
+    mysqli_query($conn,$isi);
+
+    return mysqli_affected_rows($conn);
+
+}
+
 ?>
