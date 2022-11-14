@@ -8,7 +8,7 @@
     $nama_produk = $produk["produk"];
     $id_komen = $produk["id_komen"];
 
-    $komentar = ambil("SELECT * FROM komentar_$nama_produk" . "_$id_komen");
+    $komentar = ambil("SELECT * FROM komentar_$id_komen");
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +28,7 @@
         <a href="index.php"><h1>ShopMan</h1><a>
         
         <ul class="pilihan">
-            <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>&komen=<?= $produk["id_komen"] ?>&produk=<?= $produk["produk"] ?>" 
-            onclick="return confirm('Yakin')">Delete</a></li>
+            <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">Delete</a></li>
             <li class="ganti"><a href="ganti.php?id=<?= $produk["id"] ?>">Edit</a></li>
             <li class="tambah"><a href="tambah.php">Tambah</a></li>
         </ul>
@@ -42,7 +41,7 @@
         <div class="penjualan">
             <div class="list_produk">
                 <h1 class="judul"><?= $produk["produk"] ?></h1>
-                <h1 class="harga"><?= $produk["harga"] ?></h1>
+                <h1 class="harga">Rp.<?= $produk["harga"] ?></h1>
             </div>
             <div class="list_akhir">
                 <div  class="tombol_keranjang"><a href="#">Keranjang</a></div>
@@ -57,7 +56,7 @@
     <div class="komentar">
         <div class="list_komentar">
             <div class="kiri"><h1>Komentar</h1></div>
-            <div class="kanan"><a href="tambahKomen.php?produk=<?= $produk["produk"] ?>&id_komen=<?= $produk["id_komen"] ?>&id=<?= $produk["id"] ?>"
+            <div class="kanan"><a href="tambahKomen.php?id=<?= $produk["id"] ?>"
             class="tambahKomen">Tambah</a></div>
         </div>
         <ul class="isi_komentar">

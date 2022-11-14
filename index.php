@@ -39,7 +39,7 @@ $produk = ambil("SELECT * FROM produk");
                     <a href="produk.php?id=<?= $produknya["id"] ?>">
                         <img src="img/<?= $produknya["img"] ?>">
                         <h4 ><?= $produknya["produk"] ?></h4>
-                        <h3><?= $produknya["harga"] ?></h3>
+                        <h3>Rp.<?= $produknya["harga"] ?></h3>
                     </a>
                 </div>
             </li>

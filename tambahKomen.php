@@ -2,8 +2,6 @@
 
     require 'fungsi.php';
 
-    $produk = $_GET["produk"];
-    $id_komen = $_GET["id_komen"];
     $id = $_GET["id"];
 
     if(isset($_POST["kirim"]) ){
@@ -35,8 +33,7 @@
     <div class="container">
         <h1>Tambah Komentar</h1>
         <form action="" method="POST">
-            <input type="hidden" name="produk" value="<?= $produk ?>">
-            <input type="hidden" name="id_komen" value="<?= $id_komen ?>">
+            <input type="hidden" name="id" value="<?= $id ?>">
             <!-- hidden -->
             <label for="nama">Nama Komentar</label><br>
             <input type="text" name="nama" id="nama" require autocomplete="off">

@@ -25,7 +25,7 @@ function tambah($tambah){
     }
 
     // menambahkan tabel komen
-    $komen = "CREATE TABLE komentar_$produk"."_$id_komen"."(
+    $komen = "CREATE TABLE komentar_$id_komen(
         id INT PRIMARY KEY AUTO_INCREMENT,
         nama VARCHAR(50),
         komentar VARCHAR(150)
@@ -34,7 +34,7 @@ function tambah($tambah){
     mysqli_query($conn,$komen);
     
     // menambahkan isi dari tabel produk
-    $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$id_komen')";
+    $data = "INSERT INTO produk VALUES ('$id_komen','$produk','$tentang','$harga','$gambar','$id_komen')";
     mysqli_query($conn,$data);
 
 
@@ -90,9 +90,9 @@ function upload(){
 
 }
 
-function hapus($id,$komen,$produk){
+function hapus($id){
     global $conn;
-    mysqli_query($conn,"DROP TABLE komentar_$produk"."_$komen");
+    mysqli_query($conn,"DROP TABLE komentar_$id");
 
     mysqli_query($conn,"DELETE FROM produk WHERE id = $id ");
     return mysqli_affected_rows($conn);
@@ -108,6 +108,7 @@ function ganti($data){
 
     if($_FILES["gambar"]["error"] === 4){
         $gambar = $gambarlama;
+
     }else{
         $gambar = upload();
     }
@@ -128,12 +129,11 @@ function ganti($data){
 
 function tambahKomentar($data){
     global $conn;
-    $produk = $_POST["produk"] ;
-    $id_komen = $_POST["id_komen"] ;
+    $id = $_POST["id"];
     $nama = htmlspecialchars( $data["nama"] );
     $komen = htmlspecialchars( $data["komentar"] );
 
-    $isi = "INSERT INTO komentar_$produk" . "_$id_komen VALUES ('','$nama','$komen');";
+    $isi = "INSERT INTO komentar_$id VALUES ('','$nama','$komen');";
 
     mysqli_query($conn,$isi);
 

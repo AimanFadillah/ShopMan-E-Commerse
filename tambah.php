@@ -14,6 +14,11 @@ if(isset($_POST["kirim"]) ){
     }
 }
 
+
+$id_produk = ambil("SELECT MAX(id) FROM PRODUK")[0];
+$id_komen = $id_produk["MAX(id)"] + 1 ;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +36,11 @@ if(isset($_POST["kirim"]) ){
         <form action="" method="post" enctype="multipart/form-data">
             
             <h1>Tambah Barang</h1>
-            <input type="hidden" name="id_komen" value="<?= uniqid() ?>">
+            <input type="hidden" name="id_komen" id="id_komen" value="<?= $id_komen ?>">
             <label for="produk">Nama Produk </label><br>
             <input type="text" name="produk" id="produk" autocomplete="off" require> 
             <label for="Harga">Harga Produk </label><br>
-            <input type="text" name="harga" id="Harga" autocomplete="off" require>
+            <input type="number" name="harga" id="Harga" autocomplete="off" require>
             <label for="gambar">Gambar Produk</label><br> 
             <input type="file" name="gambar" id="gambar" class="gambar"><br>
             <label for="tentang_produk">Tentang Produk </label><br>

@@ -44,13 +44,14 @@ if( isset( $_POST["kirim"] ) ){
         <label for="nama">Nama Produk</label><br>
         <input type="text" name="nama" id="nama" value="<?= $produk["produk"] ?>" require autocomplete="off">
         <label for="harga">Harga Produk</label><br>
-        <input type="text" name="harga" id="harga" value="<?= $produk["harga"] ?>" require autocomplete="off">
+        <input type="number" name="harga" id="harga" value="<?= $produk["harga"] ?>" require autocomplete="off"><br><br>
         <label for="keterangan">Tentang Barang</label><br>
         <textarea name="keterangan" id="keterangan"></textarea>
         <div class="mid">
             <input type="submit" value="kirim" name="kirim" class="kirim">
         </div>
         </form>
+    
     </div>
 
 </body>
