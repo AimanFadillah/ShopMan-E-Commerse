@@ -13,6 +13,7 @@ li{
 
 a{
     text-decoration: none;
+    color: black;
 }
 
 img{
@@ -83,4 +84,38 @@ img{
     margin-top: 30px;
     margin-left: 10px;
     color :#ee4d2d;
+}
+
+/* kategori */
+
+img.ketegori {
+    width: 150px;
+    height: 150px;
+    border-radius: 0px 0px 0px 0px;
+}
+
+.container {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.container h1{
+    margin-bottom: 15px;
+}
+
+.container ul.isikategori{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+}
+
+.container ul li a .tipe{
+    width: 150px;
+    border: 1px solid #aaa;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding-bottom: 10px;
+    
+}
+
+.container ul li a .tipe h5{
+    text-align: center;
 }
