@@ -176,6 +176,27 @@ ul.isi_komentar li{
     background-color: gray;
 }
 
+ul.isi_komentar li .atas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul.isi_komentar li .atas .kanan a{
+    padding: 3px;
+    background-color: red;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+    color: white;
+}
+
+ul.isi_komentar li .atas .kanan a.editbutton{
+    background-color: blue;
+    padding: 3px 12px;
+}
+
+
+
 .tambahKomen{
     color: white;
 }

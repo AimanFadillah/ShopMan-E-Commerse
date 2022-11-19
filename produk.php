@@ -62,7 +62,13 @@
         <ul class="isi_komentar">
             <?php foreach($komentar as $komen) : ?>
             <li>
-                <h3><?= $komen["nama"] ?></h3>
+                <div class="atas">
+                    <div class="kiri"><h3><?= $komen["nama"] ?></h3></div>
+                    <div class="kanan">
+                        <a href="editKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" class="editbutton">Edit</a>
+                        <a href="hapusKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" onclick="return confirm('Yakin')">Hapus</a>
+                    </div>
+                </div>
                 <p><?= $komen["komentar"] ?></p>
             </li>
             <?php endforeach ; ?>

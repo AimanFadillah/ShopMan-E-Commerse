@@ -141,4 +141,32 @@ function tambahKomentar($data){
 
 }
 
+function hapusKomentar($id,$id_komen){
+    global $conn;
+   
+    $isi = "DELETE FROM komentar_$id WHERE id = $id_komen";
+    mysqli_query($conn,$isi);
+
+    return mysqli_affected_rows($conn);
+}
+
+function editKomentar($data){
+    global $conn;
+    $id = $data["id"];
+    $idkomen = $data["id_komen"];
+    $nama = $data["nama"];
+    $komentar = $data["komentar"];
+
+    $isi = "UPDATE komentar_$id SET
+            nama = '$nama',
+            komentar = '$komentar'
+            WHERE id = $idkomen;
+    ";
+
+    mysqli_query($conn,$isi);
+
+    return mysqli_affected_rows($conn);
+
+}
+
 ?>

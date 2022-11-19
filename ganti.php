@@ -46,7 +46,7 @@ if( isset( $_POST["kirim"] ) ){
         <label for="harga">Harga Produk</label><br>
         <input type="number" name="harga" id="harga" value="<?= $produk["harga"] ?>" require autocomplete="off"><br><br>
         <label for="keterangan">Tentang Barang</label><br>
-        <textarea name="keterangan" id="keterangan"></textarea>
+        <textarea name="keterangan" id="keterangan"><?= $produk["keterangan"] ?></textarea>
         <div class="mid">
             <input type="submit" value="kirim" name="kirim" class="kirim">
         </div>
