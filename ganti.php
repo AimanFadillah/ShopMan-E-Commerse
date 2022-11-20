@@ -12,7 +12,7 @@ if( isset( $_POST["kirim"] ) ){
         </script>";
     }else{
         echo "<script>
-            alert('Anda edit apapun')
+            alert('Anda tidak mengedit apapun')
             document.location.href = 'produk.php?id=$id' ;
             </script>";
     }
