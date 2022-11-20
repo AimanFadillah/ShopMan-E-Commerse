@@ -91,6 +91,14 @@ function upload(){
 
 }
 
+function cari($data){
+    $produk = "SELECT * FROM produk WHERE produk LIKE '%$data%' OR
+                                       harga LIKE '%$data%' OR
+                                       kategori LIKE '%$data%' ";
+    
+    return ambil($produk);
+}
+
 function hapus($id){
     global $conn;
     mysqli_query($conn,"DROP TABLE komentar_$id");

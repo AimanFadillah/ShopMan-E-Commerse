@@ -59,6 +59,9 @@
             <div class="kanan"><a href="tambahKomen.php?id=<?= $produk["id"] ?>"
             class="tambahKomen">Tambah</a></div>
         </div>
+        <?php if(empty($komentar) ) : ?>
+            <h2>Tidak Ada Komentar :( </h2>
+        <?php endif ; ?>
         <ul class="isi_komentar">
             <?php foreach($komentar as $komen) : ?>
             <li>

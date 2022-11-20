@@ -162,7 +162,15 @@ img{
     border-radius: 5px;    
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     color: white;
+}
 
+.komentar h2{
+    margin-top: 10px;
+    padding: 4px;
+    text-align: center;
+    background-color: grey;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 ul.isi_komentar{
