@@ -4,7 +4,14 @@ require 'fungsi.php';
 
 $produk = ambil("SELECT * FROM produk");
 
-$kategori = ambil("SELECT * FROM kategori")
+$kategori = ambil("SELECT * FROM kategori");
+
+if(isset($_POST["keyword"]) ){
+    $keyword = $_POST["keyword"];
+    echo "<script>
+    document.location.href = 'cari.php?keyword=$keyword';
+    </script>";
+}
 
 ?>
 
@@ -22,7 +29,9 @@ $kategori = ambil("SELECT * FROM kategori")
 
     <div class="navbar">
         <h1>ShopMan</h1>
-        
+        <form action="" method="post">
+            <input type="search" name="keyword" id="keyword" placeholder="Cari Barang..." autofocus autocomplete="off">
+        </form>
         <ul>
             <li><a href="tambah.php">Tambah</a></li>
         </ul>

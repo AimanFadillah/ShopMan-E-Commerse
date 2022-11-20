@@ -2,9 +2,9 @@
 
 require 'fungsi.php';
 
-$kategori = $_GET["kategori"];
+$keyword = $_GET["keyword"];
 
-$produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
+$produk = cari($keyword);
 
 ?>
 
@@ -30,9 +30,9 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
 
 <!--  -->
 <div class="kelompok">
-    <h1><?= $kategori ?></h1>
+    <h1>Pencarian "<?= $keyword ?>"</h1>
     <?php if(empty($produk) ) : ?>
-        <h2>Barang Tidak Ada :( </h2>
+        <h2>Barang Tidak Ditemukan :( </h2>
     <?php endif ; ?>
     <ul class="produk">
             <?php foreach($produk as $produknya) : ?>

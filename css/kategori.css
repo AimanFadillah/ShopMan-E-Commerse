@@ -61,6 +61,13 @@ img{
     margin-bottom: 10px;
 }
 
+.kelompok h2{
+    color: #ee4d2d;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 40px;
+}
+
 .produk{
     display: grid;
     gap:10px;
