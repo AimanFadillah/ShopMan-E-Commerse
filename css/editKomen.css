@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: blue;
+    background-color: red;
     font-family: sans-serif;
 }
 
@@ -28,7 +28,7 @@ body{
 
 .container label{
     font-size: 23px;
-    color: blue;
+    color: red;
 }
 
 .container input[type="text"]{

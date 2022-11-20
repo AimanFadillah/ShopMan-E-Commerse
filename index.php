@@ -4,7 +4,7 @@ require 'fungsi.php';
 
 $produk = ambil("SELECT * FROM produk");
 
-
+$kategori = ambil("SELECT * FROM kategori")
 
 ?>
 
@@ -31,7 +31,7 @@ $produk = ambil("SELECT * FROM produk");
     <!-- main -->
 
     <div class="kelompok">
-        <h1>Rekomendasi</h1>
+        <h1>REKOMENDASI</h1>
         <ul class="produk">
             <?php foreach($produk as $produknya) : ?>
             <li>
@@ -42,6 +42,22 @@ $produk = ambil("SELECT * FROM produk");
                         <h3>Rp.<?= $produknya["harga"] ?></h3>
                     </a>
                 </div>
+            </li>
+            <?php endforeach ; ?>
+        </ul>
+    </div>
+
+    <!-- kategori -->
+    <div class="container">
+        <h1>KATEGORI</h1>
+        <ul class="isikategori">
+            <?php foreach($kategori as $kategorinya) : ?>
+            <li><a href="kategori.php?kategori=<?= $kategorinya["kategori"] ?>">
+                <div class="tipe">
+                    <img src="img_kategori/<?= $kategorinya["img"] ?>.jpg" alt="foto" class="ketegori">
+                    <h5><?= $kategorinya["kategori"] ?></h5>
+                </div>
+                </a>
             </li>
             <?php endforeach ; ?>
         </ul>

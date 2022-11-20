@@ -43,6 +43,18 @@ $id_komen = $id_produk["MAX(id)"] + 1 ;
             <input type="number" name="harga" id="Harga" autocomplete="off" require>
             <label for="gambar">Gambar Produk</label><br> 
             <input type="file" name="gambar" id="gambar" class="gambar"><br>
+            <label for="kategori">Kategori</label><br>
+            <select id="kategori" name="kategori">
+                <option value="none"></option>
+                <option value="eletronik">Elektronik</option>
+                <option value="pakaian">Pakaian</option>
+                <option value="makanan">Makanan</option>
+                <option value="kecantikan">Kecantikan</option>
+                <option value="obat">Obat</option>
+                <option value="mainan">Mainan</option>
+                <option value="perabotan">Perabotan</option>
+                <option value="hewan">Hewan</option>
+            </select><br><br>
             <label for="tentang_produk">Tentang Produk </label><br>
             
             <textarea name="tentang_produk" id="tentang_produk" class="tentang_produk" autocomplete="off" require></textarea>
