@@ -25,7 +25,7 @@
   <!-- navbar -->
 
   <div class="navbar">
-        <a href="index.php"><h1>ShopMan</h1><a>
+        <a href="index.php"><h1>Kembali</h1></a>
         
         <ul class="pilihan">
             <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">Delete</a></li>

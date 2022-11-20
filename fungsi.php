@@ -17,6 +17,7 @@ function tambah($tambah){
     $produk = htmlspecialchars( $tambah["produk"] );
     $harga = htmlspecialchars( $tambah["harga"] );
     $tentang = htmlspecialchars( $tambah["tentang_produk"] );
+    $kategori = $tambah["kategori"];
     $id_komen = $tambah["id_komen"];
     $gambar = upload();
 
@@ -34,7 +35,7 @@ function tambah($tambah){
     mysqli_query($conn,$komen);
     
     // menambahkan isi dari tabel produk
-    $data = "INSERT INTO produk VALUES ('$id_komen','$produk','$tentang','$harga','$gambar','$id_komen')";
+    $data = "INSERT INTO produk VALUES ('$id_komen','$produk','$tentang','$harga','$gambar','$id_komen','$kategori')";
     mysqli_query($conn,$data);
 
 
@@ -103,6 +104,7 @@ function ganti($data){
     $id = $data["id"];
     $produk = htmlspecialchars( $data["nama"] );
     $harga = htmlspecialchars( $data["harga"] );
+    $kategori = $data["kategori"];
     $keterangan = htmlspecialchars( $data["keterangan"] );
     $gambarlama = htmlspecialchars( $data["gambarlama"] );
 
@@ -117,7 +119,8 @@ function ganti($data){
             produk = '$produk',
             harga = '$harga',
             keterangan = '$keterangan',
-            img = '$gambar'
+            img = '$gambar',
+            kategori = '$kategori'
             WHERE id = $id;
             ";
 
@@ -125,6 +128,7 @@ function ganti($data){
 
 
     return mysqli_affected_rows($conn);
+
 }
 
 function tambahKomentar($data){

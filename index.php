@@ -52,7 +52,7 @@ $kategori = ambil("SELECT * FROM kategori")
         <h1>KATEGORI</h1>
         <ul class="isikategori">
             <?php foreach($kategori as $kategorinya) : ?>
-            <li><a href="#">
+            <li><a href="kategori.php?kategori=<?= $kategorinya["kategori"] ?>">
                 <div class="tipe">
                     <img src="img_kategori/<?= $kategorinya["img"] ?>.jpg" alt="foto" class="ketegori">
                     <h5><?= $kategorinya["kategori"] ?></h5>

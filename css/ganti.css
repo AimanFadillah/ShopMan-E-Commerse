@@ -63,8 +63,18 @@ img{
     width: 100%;;
 }
 
+.container select{
+    width: 101%;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.container select:focus{
+    outline: none;
+}
+
 .container textarea{
-    width: 100%;
+    width: 101%;
     height: 150px;
 }
 

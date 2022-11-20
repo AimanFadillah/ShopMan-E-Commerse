@@ -12,7 +12,8 @@ if( isset( $_POST["kirim"] ) ){
         </script>";
     }else{
         echo "<script>
-            alert('naha gagal')
+            alert('Anda edit apapun')
+            document.location.href = 'produk.php?id=$id' ;
             </script>";
     }
 };
@@ -45,6 +46,18 @@ if( isset( $_POST["kirim"] ) ){
         <input type="text" name="nama" id="nama" value="<?= $produk["produk"] ?>" require autocomplete="off">
         <label for="harga">Harga Produk</label><br>
         <input type="number" name="harga" id="harga" value="<?= $produk["harga"] ?>" require autocomplete="off"><br><br>
+        <label for="kategori">Kategori</label><br>
+            <select id="kategori" name="kategori">
+                <option value="<?= $produk["kategori"] ?>">"<?= $produk["kategori"] ?>"</option>
+                <option value="eletronik">Elektronik</option>
+                <option value="pakaian">Pakaian</option>
+                <option value="makanan">Makanan</option>
+                <option value="kecantikan">Kecantikan</option>
+                <option value="obat">Obat</option>
+                <option value="mainan">Mainan</option>
+                <option value="Perabotan">Perabotan</option>
+                <option value="hewan">Hewan</option>
+            </select><br><br>
         <label for="keterangan">Tentang Barang</label><br>
         <textarea name="keterangan" id="keterangan"><?= $produk["keterangan"] ?></textarea>
         <div class="mid">

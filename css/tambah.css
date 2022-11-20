@@ -16,7 +16,7 @@ body{
     margin: 80px auto;
     padding: 20px;
     width: 30%;
-    height: 500px;
+    height: 520px;
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -33,7 +33,7 @@ body{
 }
 
 .form input{
-    width: 100%;
+    width: 99%;
     height: 20px;
     margin-bottom: 20px;
     border: 1px solid gray;
@@ -41,12 +41,23 @@ body{
 }
 
 .form input[type='file']{
+    width: 98%;
     border:none;
     background-color: grey;
-    padding: 6px;
+    padding: 6px 0px 6px 6px;
 }
 
 .form input:focus{
+    outline: none;
+}
+
+.form select{
+    width: 100%;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.form select:focus{
     outline: none;
 }
 
