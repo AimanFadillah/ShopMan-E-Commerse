@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2022 at 03:51 AM
+-- Generation Time: Nov 26, 2022 at 06:30 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -64,8 +64,7 @@ CREATE TABLE `komentar_60` (
 --
 
 INSERT INTO `komentar_60` (`id`, `nama`, `komentar`) VALUES
-(1, 'Gion', 'mengurangi bug'),
-(4, 'aiman', 'Apa iya');
+(1, 'Gion', 'gila ada fitur login');
 
 -- --------------------------------------------------------
 
@@ -138,13 +137,6 @@ CREATE TABLE `komentar_64` (
   `komentar` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `komentar_64`
---
-
-INSERT INTO `komentar_64` (`id`, `nama`, `komentar`) VALUES
-(1, 'Elon Musk', 'udah normal lagi ');
-
 -- --------------------------------------------------------
 
 --
@@ -162,7 +154,7 @@ CREATE TABLE `komentar_65` (
 --
 
 INSERT INTO `komentar_65` (`id`, `nama`, `komentar`) VALUES
-(1, 'Aiman', 'First');
+(2, 'Aiman', 'ihh ubur ubur');
 
 -- --------------------------------------------------------
 
@@ -185,12 +177,33 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `id_komen`, `kategori`) VALUES
-(60, 'Koala', 'mahal yap', 1200000, 'Koala.jpg', '60', 'hewan'),
-(61, 'Jeruk dari bali', 'yoi', 5000, 'jeruk.jpg', '61', 'makanan'),
+(60, 'Koala', 'mahal yap', 1200, 'Koala.jpg', '60', 'hewan'),
+(61, 'Jeruk bali', 'yoi', 5000, 'jeruk.jpg', '61', 'makanan'),
 (62, 'Tulip', 'Harga nya terjakau cuy', 2000, 'Tulips.jpg', '62', 'makanan'),
 (63, 'Bandar', 'yooo', 10000, 'Penguins.jpg', '63', 'hewan'),
 (64, 'Rumah', 'yap', 200000, 'Lighthouse.jpg', '64', 'Perabotan'),
 (65, 'JellyFish', 'yap', 1000000, 'Jellyfish.jpg', '65', 'hewan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `nama`, `password`) VALUES
+(1, 'aiman', '$2y$10$QB4UUT6HNO6KAuQ8G4Cz7e3lw55DGtKobc7k.nu03cTHKWI0/Bgzi'),
+(2, 'aldi', '$2y$10$D/FMBGIh18YhtXG1JIFREun4fUWFCGit7YdyjdBRVGDI324Ixkqwm'),
+(3, 'ilyas', '$2y$10$SfgiwycxFs8H0jOSOt6DdugF82/e52odPDw7t4vd2ypY59sLZe8Se');
 
 --
 -- Indexes for dumped tables
@@ -245,6 +258,12 @@ ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -288,7 +307,13 @@ ALTER TABLE `komentar_64`
 -- AUTO_INCREMENT for table `komentar_65`
 --
 ALTER TABLE `komentar_65`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
