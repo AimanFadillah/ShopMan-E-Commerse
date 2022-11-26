@@ -56,13 +56,38 @@ img{
     outline: none;
 }
 
-.navbar ul li{
+.navbar ul{
+    display: flex;
+}
+
+.navbar ul li.login{
+    margin-right: 10px;
+    background-color: blue;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 10px 20px 10px 20px;
+}
+
+.navbar ul li.tambah{
+    margin-right: -10px;
     background-color: green;
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     padding: 10px;
 }
+
+.navbar ul li.logout{
+    margin-right: 10px;
+    margin-left: -85px;
+    background-color: red;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 10px;
+}
+
 
 .navbar a{
     color: white;

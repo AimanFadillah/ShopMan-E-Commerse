@@ -1,0 +1,110 @@
+body{
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* nav */
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px 0px 40px;
+    box-sizing: border-box;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+nav h1{
+    font-size: 35px;
+    color: #ee4d2d;
+}
+
+nav ul li{
+    color: #ee4d2d;
+}
+
+/* login */
+
+.login{
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: 0px -120px;
+    padding-top: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login .isiLogin{
+    width: 29%;
+    height: 320px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    margin-right: 6%;
+    padding: 20px;
+}
+
+.login .isiLogin p{
+    margin-bottom: -10px;
+}
+
+.login .isiDaftar{
+    width: 29%;
+    height: 400px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    margin-right: 6%;
+    padding: 20px;
+}
+
+.login .isiLogin form input,
+.login .isiDaftar form input{
+    width: 94%;
+    border: 1px solid gray;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.login .isiLogin form input:focus,
+.login .isiDaftar form input:focus{
+    outline: none;
+}
+
+.login .isiLogin form input.password,
+.login .isiDaftar form input.password{
+    margin-top: 20px;
+}
+
+.login .isiLogin form button.kirim,
+.login .isiDaftar form button.kirim{
+    width: 100%;
+    background-color: #ee4d2d;
+    border-radius: 3px;
+    border: none;
+    font-weight: bold;
+    color: white;
+    margin-top:30px;
+    padding: 10px;
+}
+
+.login .isiLogin form h6,
+.login .isiDaftar form h6{
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.login .isiLogin form h6 button,
+.login .isiDaftar form h6 button{
+    border: 0;
+    color: blue;
+}

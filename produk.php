@@ -1,5 +1,12 @@
 <?php
     require "fungsi.php";
+    session_start();
+
+    if(!isset($_SESSION["login"])){
+        $_SESSION["login"] === false;
+    }else{
+        $_SESSION["login"] === true;
+    }
 
     $id = $_GET["id"];
 
@@ -26,12 +33,18 @@
 
   <div class="navbar">
         <a href="index.php"><h1>Kembali</h1></a>
-        
+        <?php if($_SESSION["login"] === false) : ?>  
+        <ul class="pilihan">
+            <li class="ganti"><a href="login.php">Login</a></li>
+        </ul>
+        <?php endif ; ?>
+        <?php if($_SESSION["login"] === true) : ?>  
         <ul class="pilihan">
             <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">Delete</a></li>
             <li class="ganti"><a href="ganti.php?id=<?= $produk["id"] ?>">Edit</a></li>
             <li class="tambah"><a href="tambah.php">Tambah</a></li>
         </ul>
+        <?php endif ; ?>
     </div>
 
     <!-- main -->
@@ -56,8 +69,10 @@
     <div class="komentar">
         <div class="list_komentar">
             <div class="kiri"><h1>Komentar</h1></div>
+            <?php if($_SESSION["login"] === true) : ?>  
             <div class="kanan"><a href="tambahKomen.php?id=<?= $produk["id"] ?>"
             class="tambahKomen">Tambah</a></div>
+            <?php endif ; ?>
         </div>
         <?php if(empty($komentar) ) : ?>
             <h2>Tidak Ada Komentar :( </h2>
@@ -68,8 +83,10 @@
                 <div class="atas">
                     <div class="kiri"><h3><?= $komen["nama"] ?></h3></div>
                     <div class="kanan">
+                    <?php if($_SESSION["login"] === true) : ?>  
                         <a href="editKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" class="editbutton">Edit</a>
                         <a href="hapusKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" onclick="return confirm('Yakin')">Hapus</a>
+                        <?php endif ; ?>
                     </div>
                 </div>
                 <p><?= $komen["komentar"] ?></p>

@@ -1,6 +1,11 @@
 <?php
 
 require 'fungsi.php';
+session_start();
+
+if( !isset($_SESSION["login"]) ){
+    $_SESSION["login"] = false;
+}
 
 $kategori = $_GET["kategori"];
 
@@ -24,7 +29,13 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
         <a href="index.php"><h1>Kembali</h1></a>
         
         <ul>
-            <li><a href="tambah.php">Tambah</a></li>
+            <?php if($_SESSION["login"] === false) : ?>    
+                <li class="login"><a href="login.php">Login</a></li>
+            <?php endif ; ?>
+            <?php if($_SESSION["login"] === true) : ?>    
+                <li class="tambah"><a href="tambah.php">Tambah</a></li>
+            <?php endif ; ?>
+           
         </ul>
     </div>
 

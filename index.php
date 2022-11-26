@@ -2,6 +2,12 @@
 
 require 'fungsi.php';
 
+session_start();
+
+if( !isset($_SESSION["login"]) ){
+    $_SESSION["login"] = false;
+}
+
 $produk = ambil("SELECT * FROM produk");
 
 $kategori = ambil("SELECT * FROM kategori");
@@ -33,7 +39,13 @@ if(isset($_POST["keyword"]) ){
             <input type="search" name="keyword" id="keyword" placeholder="Cari Barang..." autofocus autocomplete="off">
         </form>
         <ul>
-            <li><a href="tambah.php">Tambah</a></li>
+            <?php if($_SESSION["login"] === false) : ?>    
+                <li class="login"><a href="login.php">Login</a></li>
+            <?php endif ; ?>
+            <?php if($_SESSION["login"] === true) : ?>    
+                <li class="logout"><a href="logout.php">Logout</a></li>
+                <li class="tambah"><a href="tambah.php">Tambah</a></li>
+            <?php endif ; ?>
         </ul>
     </div>
 
