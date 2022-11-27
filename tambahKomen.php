@@ -16,6 +16,21 @@
 
     $id = $_GET["id"];
     $nama = $_GET["nama"];
+    
+
+    $user = ambil("SELECT * FROM user WHERE id = $nama")[0];
+    // KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
+if($_SESSION["login"] === true){
+    $nama = $_GET["nama"];
+    $user = ambil("SELECT * FROM user WHERE id = $nama ");
+    if(empty($user) ){
+        echo "<script>
+        document.location.href = 'logout.php';
+        </script>";
+    }
+}
+
+
 
     if(isset($_POST["kirim"]) ){
         if(tambahKomentar($_POST) > 0){
@@ -47,9 +62,9 @@
         <h1>Tambah Komentar</h1>
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?= $id ?>">
-            <input type="hidden" name="nama" id="nama" value="<?= $nama ?>">
+            <input type="hidden" name="nama" id="nama" value="<?= $user["nama"] ?>">
             <!-- hidden -->
-            <label for="komentar">User : <?= $nama ?></label><br>
+            <label for="komentar">User : <?= $user["nama"] ?></label><br>
             <textarea name="komentar" id="komentar"></textarea>
             <div class="mid">
                 <input type="submit" value="kirim" id="kirim" name="kirim">
