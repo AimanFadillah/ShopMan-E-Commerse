@@ -14,10 +14,12 @@ session_start();
         exit();
     }
 
+$nama = $_GET["nama"];
+
 if(isset($_POST["kirim"]) ){
     if(tambah($_POST) > 0){
         echo "<script>
-        document.location.href = 'index.php' ;
+        document.location.href = 'index.php?nama=$nama' ;
         </script>";
       }else{       
         echo "<script>
@@ -25,7 +27,6 @@ if(isset($_POST["kirim"]) ){
             </script>";
     }
 }
-
 
 $id_produk = ambil("SELECT MAX(id) FROM PRODUK")[0];
 $id_komen = $id_produk["MAX(id)"] + 1 ;

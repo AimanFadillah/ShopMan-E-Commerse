@@ -2,9 +2,26 @@
 
 require 'fungsi.php';
 
-$test = ambil("SELECT MAX(id) FROM PRODUK")[0];
+$produk = ambil("SELECT id FROM produk");
 
-echo $test["MAX(id)"];
+$ye = [];
+
+foreach($produk as $produknya){
+    $ye[] = $produknya["id"];
+}
+
+
+
+$random = array_rand($ye,5);
+
+echo $ye[$random[4]];
+
+
+
+
+
+
+
 
 
 ?>

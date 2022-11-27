@@ -36,10 +36,11 @@ if( isset($_POST["kirimLogin"]) ){
         $row = mysqli_fetch_assoc($result);
 
         if(password_verify($password,$row["password"]) ){
+            $nama = $row["nama"];
             $_SESSION["login"] = true;
             echo "
             <script>
-                document.location.href = 'index.php' ;
+                document.location.href = 'index.php?nama=$nama' ;
             </script>";
         }
     }

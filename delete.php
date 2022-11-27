@@ -15,12 +15,21 @@ session_start();
         exit();
     }
 
+$nama = $_GET["nama"];
 
 $id = $_GET["id"];
 
+
+if($nama !== $komen["nama"]){
+    echo "<script>
+        alert('kamu tidak berhak Edit komentar ini');
+        document.location.href = 'produk.php?id=$id&nama=$nama';
+        </script>";
+}
+
 if(hapus($id) > 0){
     echo "<script>
-    document.location.href = 'index.php' ;
+    document.location.href = 'index.php?nama=$nama' ;
     </script>";
     exit();
 }else{

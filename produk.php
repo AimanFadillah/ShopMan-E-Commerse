@@ -11,11 +11,16 @@
     $id = $_GET["id"];
 
     $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
-
+    $nama = $_GET["nama"];
     $nama_produk = $produk["produk"];
     $id_komen = $produk["id_komen"];
 
     $komentar = ambil("SELECT * FROM komentar_$id_komen");
+
+    // random
+
+    $produk_rekomendasi = ambil("SELECT * FROM produk ORDER BY RAND() LIMIT 5");
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +37,7 @@
   <!-- navbar -->
 
   <div class="navbar">
-        <a href="index.php"><h1>Kembali</h1></a>
+        <a href="index.php?nama=<?= $nama ?>"><h1>Kembali</h1></a>
         <?php if($_SESSION["login"] === false) : ?>  
         <ul class="pilihan">
             <li class="ganti"><a href="login.php">Login</a></li>
@@ -40,9 +45,9 @@
         <?php endif ; ?>
         <?php if($_SESSION["login"] === true) : ?>  
         <ul class="pilihan">
-            <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">Delete</a></li>
-            <li class="ganti"><a href="ganti.php?id=<?= $produk["id"] ?>">Edit</a></li>
-            <li class="tambah"><a href="tambah.php">Tambah</a></li>
+            <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>&nama=<?= $nama ?>" onclick="return confirm('Yakin')">Delete</a></li>
+            <li class="ganti"><a href="ganti.php?id=<?= $produk["id"] ?>&nama=<?= $nama ?>">Edit</a></li>
+            <li class="tambah"><a href="tambah.php?nama=<?= $nama ?>">Tambah</a></li>
         </ul>
         <?php endif ; ?>
     </div>
@@ -70,7 +75,7 @@
         <div class="list_komentar">
             <div class="kiri"><h1>Komentar</h1></div>
             <?php if($_SESSION["login"] === true) : ?>  
-            <div class="kanan"><a href="tambahKomen.php?id=<?= $produk["id"] ?>"
+            <div class="kanan"><a href="tambahKomen.php?id=<?= $produk["id"] ?>&nama=<?= $nama ?>"
             class="tambahKomen">Tambah</a></div>
             <?php endif ; ?>
         </div>
@@ -84,14 +89,32 @@
                     <div class="kiri"><h3><?= $komen["nama"] ?></h3></div>
                     <div class="kanan">
                     <?php if($_SESSION["login"] === true) : ?>  
-                        <a href="editKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" class="editbutton">Edit</a>
-                        <a href="hapusKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" onclick="return confirm('Yakin')">Hapus</a>
+                        <a href="editKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>&nama=<?= $nama ?>" class="editbutton">Edit</a>
+                        <a href="hapusKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>&nama=<?= $nama ?>&nama_komen=<?= $komen["nama"] ?>" onclick="return confirm('Yakin')">Hapus</a>
                         <?php endif ; ?>
                     </div>
                 </div>
                 <p><?= $komen["komentar"] ?></p>
             </li>
             <?php endforeach ; ?>
+        </ul>
+    </div>
+
+    <!-- random rekomendasi -->
+    <div class="kelompok">
+        <h1>Rekomendasi</h1>
+        <ul class="random">
+        <?php foreach($produk_rekomendasi as $produk_random) : ?>
+            <li>
+                <div class="random_isi">
+                    <a href="produk.php?id=<?= $produk_random["id"] ?>&nama=<?= $nama ?>">
+                        <img src="img/<?= $produk_random["img"] ?>">
+                        <h4 ><?= $produk_random["produk"] ?></h4>
+                        <h3>Rp.<?= $produk_random["harga"] ?></h3>
+                    </a>
+                </div>
+            </li>
+        <?php endforeach ; ?>
         </ul>
     </div>
 

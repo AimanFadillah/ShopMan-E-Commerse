@@ -16,17 +16,26 @@
 
     $id = $_GET["id"];
     $idkomen = $_GET["id_komen"];
+    $nama = $_GET["nama"];
 
     $komen = ambil("SELECT * FROM komentar_$id WHERE id = $idkomen")[0];
+
+    if($nama !== $komen["nama"]){
+        echo "<script>
+            alert('kamu tidak berhak Edit komentar ini');
+            document.location.href = 'produk.php?id=$id&nama=$nama';
+            </script>";
+    }
 
     if(isset($_POST["kirim"]) ){
         if(editKomentar($_POST) > 0){
             echo "<script>
-            document.location.href = 'produk.php?id=$id';
+            document.location.href = 'produk.php?id=$id&nama=$nama';
             </script>";
         }else{
             echo "<script>
-            alert('naha gagal')
+            alert('kamu tidak mengedit apapun')
+            document.location.href = 'produk.php?id=$id&nama=$nama';
             </script>";
         }
     }
@@ -49,11 +58,10 @@
         <h1>Edit Komentar</h1>
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?= $id ?>">
-            <input type="hidden" name="id_komen" value="<?= $idkomen ?>"
-            <!-- hidden -->
-            <label for="nama">Nama Komentar</label><br>
-            <input type="text" name="nama" id="nama" require autocomplete="off" value="<?= $komen["nama"] ?>">
-            <label for="komentar">Komentar</label><br>
+            <input type="hidden" name="id_komen" value="<?= $idkomen ?>">
+            <input type="hidden" name="nama" id="nama" value="<?= $nama ?>">
+
+            <label for="komentar">User : <?= $nama ?></label><br>
             <textarea name="komentar" id="komentar"><?= $komen["komentar"] ?></textarea>
             <div class="mid">
                 <input type="submit" value="kirim" id="kirim" name="kirim">

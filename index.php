@@ -8,14 +8,26 @@ if( !isset($_SESSION["login"]) ){
     $_SESSION["login"] = false;
 }
 
+if($_SESSION["login"] === false){
+    $nama = "null";
+}
+
+if($_SESSION["login"] === true){
+    $nama = $_GET["nama"];
+}
+
+
+
 $produk = ambil("SELECT * FROM produk");
+
+
 
 $kategori = ambil("SELECT * FROM kategori");
 
 if(isset($_POST["keyword"]) ){
     $keyword = $_POST["keyword"];
     echo "<script>
-    document.location.href = 'cari.php?keyword=$keyword';
+    document.location.href = 'cari.php?keyword=$keyword&nama=$nama';
     </script>";
 }
 
@@ -44,7 +56,7 @@ if(isset($_POST["keyword"]) ){
             <?php endif ; ?>
             <?php if($_SESSION["login"] === true) : ?>    
                 <li class="logout"><a href="logout.php">Logout</a></li>
-                <li class="tambah"><a href="tambah.php">Tambah</a></li>
+                <li class="tambah"><a href="tambah.php?nama="<?= $nama ?>>Tambah</a></li>
             <?php endif ; ?>
         </ul>
     </div>
@@ -57,7 +69,7 @@ if(isset($_POST["keyword"]) ){
             <?php foreach($produk as $produknya) : ?>
             <li>
                 <div class="isi">
-                    <a href="produk.php?id=<?= $produknya["id"] ?>">
+                    <a href="produk.php?id=<?= $produknya["id"] ?>&nama=<?= $nama ?>">
                         <img src="img/<?= $produknya["img"] ?>">
                         <h4 ><?= $produknya["produk"] ?></h4>
                         <h3>Rp.<?= $produknya["harga"] ?></h3>
@@ -73,7 +85,7 @@ if(isset($_POST["keyword"]) ){
         <h1>KATEGORI</h1>
         <ul class="isikategori">
             <?php foreach($kategori as $kategorinya) : ?>
-            <li><a href="kategori.php?kategori=<?= $kategorinya["kategori"] ?>">
+            <li><a href="kategori.php?kategori=<?= $kategorinya["kategori"] ?>&nama=<?= $nama ?>">
                 <div class="tipe">
                     <img src="img_kategori/<?= $kategorinya["img"] ?>.jpg" alt="foto" class="ketegori">
                     <h5><?= $kategorinya["kategori"] ?></h5>

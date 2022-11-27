@@ -15,11 +15,12 @@
     }
 
     $id = $_GET["id"];
+    $nama = $_GET["nama"];
 
     if(isset($_POST["kirim"]) ){
         if(tambahKomentar($_POST) > 0){
             echo "<script>
-            document.location.href = 'produk.php?id=$id';
+            document.location.href = 'produk.php?id=$id&nama=$nama';
             </script>";
         }else{
             echo "<script>
@@ -46,10 +47,9 @@
         <h1>Tambah Komentar</h1>
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?= $id ?>">
+            <input type="hidden" name="nama" id="nama" value="<?= $nama ?>">
             <!-- hidden -->
-            <label for="nama">Nama Komentar</label><br>
-            <input type="text" name="nama" id="nama" require autocomplete="off">
-            <label for="komentar">Komentar</label><br>
+            <label for="komentar">User : <?= $nama ?></label><br>
             <textarea name="komentar" id="komentar"></textarea>
             <div class="mid">
                 <input type="submit" value="kirim" id="kirim" name="kirim">

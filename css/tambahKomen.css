@@ -8,6 +8,7 @@ body{
     font-family: sans-serif;
 }
 
+
 /* container */
 
 .container{
@@ -15,10 +16,10 @@ body{
     border-radius: 5px;
     box-sizing: border-box;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    margin: 100px auto;
+    margin: 140px auto;
     padding: 20px;
     width: 40%;
-    height: 370px;
+    height: 310px;
 }
 
 .container h1{
