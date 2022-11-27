@@ -9,7 +9,7 @@ if( !isset($_SESSION["login"]) ){
 
 
 
-$nama = $_GET["nama"];
+
 // KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
 if($_SESSION["login"] === true){
     $nama = $_GET["nama"];
@@ -41,7 +41,7 @@ $produk = cari($keyword);
 
 <!-- navbar -->
 <div class="navbar">
-        <a href="index.php"><h1>Kembali</h1></a>
+        <a href="index.php?nama=<?= $nama ?>"><h1>Kembali</h1></a>
         
         <ul>
             <?php if($_SESSION["login"] === false) : ?>    

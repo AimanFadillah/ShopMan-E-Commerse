@@ -1,5 +1,6 @@
 <?php
 
+
 require 'fungsi.php';
 
 session_start();
@@ -13,8 +14,23 @@ if($_SESSION["login"] === false){
     $nama = "null";
 }
 
-// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
+// KEAMANAN JIKA ADA YANG NGUTAK NGATIK
 if($_SESSION["login"] === true){
+
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+        $url = "https://";   
+    else {
+        $url = "http://";   
+        $url.= $_SERVER['HTTP_HOST'];   
+        $url.= $_SERVER['REQUEST_URI'];    
+
+    }
+
+    if( $url === "http://localhost/shopman/index.php"){
+       header("location:logout.php");
+       exit();
+    }
+
     $nama = $_GET["nama"];
     $user = ambil("SELECT * FROM user WHERE id = $nama ");
     if(empty($user) ){
@@ -22,10 +38,9 @@ if($_SESSION["login"] === true){
         document.location.href = 'logout.php';
         </script>";
     }
-}
+    
 
-if(empty($nama)){
-    $nama = "null";
+
 }
 
 
