@@ -7,7 +7,7 @@ if( !isset($_SESSION["login"]) ){
     $_SESSION["login"] = false;
 }
 
-
+$nama = $_GET["nama"];
 
 $keyword = $_GET["keyword"];
 
@@ -51,7 +51,7 @@ $produk = cari($keyword);
             <?php foreach($produk as $produknya) : ?>
             <li>
                 <div class="isi">
-                    <a href="produk.php?id=<?= $produknya["id"] ?>">
+                    <a href="produk.php?id=<?= $produknya["id"] ?>&nama=<?= $nama ?>">
                         <img src="img/<?= $produknya["img"] ?>">
                         <h4 ><?= $produknya["produk"] ?></h4>
                         <h3>Rp.<?= $produknya["harga"] ?></h3>

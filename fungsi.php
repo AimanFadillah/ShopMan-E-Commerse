@@ -103,6 +103,13 @@ function hapus($id){
     global $conn;
     mysqli_query($conn,"DROP TABLE komentar_$id");
 
+    $img = ambil("SELECT img FROM produk WHERE id = $id")[0];
+
+    $gambar = $img["img"];
+
+    unlink("img/$gambar");
+
+
     mysqli_query($conn,"DELETE FROM produk WHERE id = $id ");
     return mysqli_affected_rows($conn);
 }

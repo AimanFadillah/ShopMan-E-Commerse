@@ -209,3 +209,52 @@ ul.isi_komentar li .atas .kanan a.editbutton{
     color: white;
 }
 
+/* random rekomendai */
+
+.kelompok {
+    width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.kelompok h1{
+    margin-bottom: 10px;
+}
+
+.random{
+    display: grid;
+    gap:10px;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
+}
+
+.random li{
+    box-shadow: none;
+}
+
+.random_isi {
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 7px;
+    width: 200px;
+    height: 280px;
+}
+
+.random_isi a img{
+    width: 200px;
+    height: 200px;
+}
+
+.random_isi a h4{
+    margin-left: 10px;
+    color: black;
+}
+
+.random_isi a h3{
+    margin-top: 30px;
+    margin-left: 10px;
+    color :#ee4d2d;
+}
