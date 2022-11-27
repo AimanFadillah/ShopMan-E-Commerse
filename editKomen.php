@@ -3,6 +3,8 @@
     require 'fungsi.php';
     session_start();
 
+    
+
 
     // sesion login
     if( !isset( $_SESSION["login"] ) ){
@@ -14,13 +16,27 @@
         exit();
     }
 
+    
+
     $id = $_GET["id"];
     $idkomen = $_GET["id_komen"];
     $nama = $_GET["nama"];
-
+    $user = ambil("SELECT * FROM user WHERE id = $nama")[0];
     $komen = ambil("SELECT * FROM komentar_$id WHERE id = $idkomen")[0];
 
-    if($nama !== $komen["nama"]){
+    // KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
+if($_SESSION["login"] === true){
+    $nama = $_GET["nama"];
+    $user = ambil("SELECT * FROM user WHERE id = $nama ");
+    if(empty($user) ){
+        echo "<script>
+        document.location.href = 'logout.php';
+        </script>";
+    }
+}
+
+
+    if($user["nama"] !== $komen["nama"]){
         echo "<script>
             alert('kamu tidak berhak Edit komentar ini');
             document.location.href = 'produk.php?id=$id&nama=$nama';
@@ -59,9 +75,9 @@
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?= $id ?>">
             <input type="hidden" name="id_komen" value="<?= $idkomen ?>">
-            <input type="hidden" name="nama" id="nama" value="<?= $nama ?>">
+            <input type="hidden" name="nama" id="nama" value="<?= $user["nama"] ?>">
 
-            <label for="komentar">User : <?= $nama ?></label><br>
+            <label for="komentar">User : <?= $user["nama"] ?></label><br>
             <textarea name="komentar" id="komentar"><?= $komen["komentar"] ?></textarea>
             <div class="mid">
                 <input type="submit" value="kirim" id="kirim" name="kirim">

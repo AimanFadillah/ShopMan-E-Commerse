@@ -19,13 +19,18 @@ $nama = $_GET["nama"];
 
 $id = $_GET["id"];
 
-
-if($nama !== $komen["nama"]){
-    echo "<script>
-        alert('kamu tidak berhak Edit komentar ini');
-        document.location.href = 'produk.php?id=$id&nama=$nama';
+// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
+if($_SESSION["login"] === true){
+    $nama = $_GET["nama"];
+    $user = ambil("SELECT * FROM user WHERE id = $nama ");
+    if(empty($user) ){
+        echo "<script>
+        document.location.href = 'logout.php';
         </script>";
+    }
 }
+
+
 
 if(hapus($id) > 0){
     echo "<script>

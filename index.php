@@ -8,12 +8,24 @@ if( !isset($_SESSION["login"]) ){
     $_SESSION["login"] = false;
 }
 
+
 if($_SESSION["login"] === false){
     $nama = "null";
 }
 
+// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
 if($_SESSION["login"] === true){
     $nama = $_GET["nama"];
+    $user = ambil("SELECT * FROM user WHERE id = $nama ");
+    if(empty($user) ){
+        echo "<script>
+        document.location.href = 'logout.php';
+        </script>";
+    }
+}
+
+if(empty($nama)){
+    $nama = "null";
 }
 
 

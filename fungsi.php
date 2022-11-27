@@ -212,9 +212,10 @@ function daftar($data){
         return false;
     }
 
+    $idUser = uniqid();
     $password = password_hash($password,PASSWORD_DEFAULT);
 
-    mysqli_query($conn,"INSERT INTO user VALUES('','$username','$password')");
+    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password')");
 
     return mysqli_affected_rows($conn);
 

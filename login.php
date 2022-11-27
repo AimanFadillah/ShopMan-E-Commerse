@@ -36,7 +36,7 @@ if( isset($_POST["kirimLogin"]) ){
         $row = mysqli_fetch_assoc($result);
 
         if(password_verify($password,$row["password"]) ){
-            $nama = $row["nama"];
+            $nama = $row["id"];
             $_SESSION["login"] = true;
             echo "
             <script>
@@ -48,6 +48,8 @@ if( isset($_POST["kirimLogin"]) ){
     $error = true;
 
 }
+
+
 
 ?>
 

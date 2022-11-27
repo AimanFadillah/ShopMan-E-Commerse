@@ -244,6 +244,7 @@ ul.isi_komentar li .atas .kanan a.editbutton{
 }
 
 .random_isi a img{
+    border-radius: 5px 5px 0 0;
     width: 200px;
     height: 200px;
 }

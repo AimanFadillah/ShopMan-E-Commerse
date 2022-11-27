@@ -8,12 +8,26 @@
         $_SESSION["login"] === true;
     }
 
+    
+
     $id = $_GET["id"];
 
     $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
     $nama = $_GET["nama"];
     $nama_produk = $produk["produk"];
     $id_komen = $produk["id_komen"];
+
+    // KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
+if($_SESSION["login"] === true){
+    $nama = $_GET["nama"];
+    $user = ambil("SELECT * FROM user WHERE id = $nama ");
+    if(empty($user) ){
+        echo "<script>
+        document.location.href = 'logout.php';
+        </script>";
+    }
+}
+
 
     $komentar = ambil("SELECT * FROM komentar_$id_komen");
 
