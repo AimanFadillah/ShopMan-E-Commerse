@@ -8,21 +8,6 @@ if( !isset($_SESSION["login"]) ){
 }
 
 
-
-$nama = $_GET["nama"];
-
-// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
-if($_SESSION["login"] === true){
-    $nama = $_GET["nama"];
-    $user = ambil("SELECT * FROM user WHERE id = $nama ");
-    if(empty($user) ){
-        echo "<script>
-        document.location.href = 'logout.php';
-        </script>";
-    }
-}
-
-
 $kategori = $_GET["kategori"];
 
 $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
@@ -42,7 +27,7 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
 
 <!-- navbar -->
 <div class="navbar">
-        <a href="index.php?nama=<?= $nama ?>"><h1>Kembali</h1></a>
+        <a href="index.php"><h1>Kembali</h1></a>
         
         <ul>
             <?php if($_SESSION["login"] === false) : ?>    
@@ -65,7 +50,7 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
             <?php foreach($produk as $produknya) : ?>
             <li>
                 <div class="isi">
-                    <a href="produk.php?id=<?= $produknya["id"] ?>&nama=<?= $nama ?>">
+                    <a href="produk.php?id=<?= $produknya["id"] ?>">
                         <img src="img/<?= $produknya["img"] ?>">
                         <h4 ><?= $produknya["produk"] ?></h4>
                         <h3>Rp.<?= $produknya["harga"] ?></h3>

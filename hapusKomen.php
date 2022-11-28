@@ -20,33 +20,25 @@ session_start();
 
 $id = $_GET["id"];
 $id_komen = $_GET["id_komen"];
-$nama = $_GET["nama"];
+$user_nama = $_SESSION["user"];
 $nama_komen = $_GET["nama_komen"];
-$user = ambil("SELECT * FROM user WHERE id = $nama")[0];
-// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
-if($_SESSION["login"] === true){
-    $nama = $_GET["nama"];
-    $user = ambil("SELECT * FROM user WHERE id = $nama ");
-    if(empty($user) ){
-        echo "<script>
-        document.location.href = 'logout.php';
-        </script>";
-    }
-}
+$user = ambil("SELECT * FROM user WHERE id = $user_nama")[0];
+
+
 
 
 
 if($user["nama"] !== $nama_komen){
     echo "<script>
         alert('kamu tidak berhak Menghapus komentar ini');
-        document.location.href = 'produk.php?id=$id&nama=$nama';
+        document.location.href = 'produk.php?id=$id';
         </script>";
     die();
 }
 
 if(hapusKomentar($id,$id_komen) > 0){
     echo "<script>
-            document.location.href = 'produk.php?id=$id&nama=$nama';
+            document.location.href = 'produk.php?id=$id';
             </script>";
 }else{
     echo "<script>

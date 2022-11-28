@@ -15,27 +15,17 @@
     }
 
     $id = $_GET["id"];
-    $nama = $_GET["nama"];
-    
-
-    $user = ambil("SELECT * FROM user WHERE id = $nama")[0];
+    $user_nama = $_SESSION["user"];
+    $user = ambil("SELECT * FROM user WHERE id = $user_nama")[0];
     // KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
-if($_SESSION["login"] === true){
-    $nama = $_GET["nama"];
-    $user = ambil("SELECT * FROM user WHERE id = $nama ");
-    if(empty($user) ){
-        echo "<script>
-        document.location.href = 'logout.php';
-        </script>";
-    }
-}
+
 
 
 
     if(isset($_POST["kirim"]) ){
         if(tambahKomentar($_POST) > 0){
             echo "<script>
-            document.location.href = 'produk.php?id=$id&nama=$nama';
+            document.location.href = 'produk.php?id=$id';
             </script>";
         }else{
             echo "<script>

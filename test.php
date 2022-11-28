@@ -13,6 +13,7 @@ require 'fungsi.php';
 
     if( $url === "http://localhost/shopman/test.php"){
         header("Location:index.php");
+        exit();
     }
 
 

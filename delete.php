@@ -15,26 +15,12 @@ session_start();
         exit();
     }
 
-$nama = $_GET["nama"];
-
 $id = $_GET["id"];
-
-// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
-if($_SESSION["login"] === true){
-    $nama = $_GET["nama"];
-    $user = ambil("SELECT * FROM user WHERE id = $nama ");
-    if(empty($user) ){
-        echo "<script>
-        document.location.href = 'logout.php';
-        </script>";
-    }
-}
-
 
 
 if(hapus($id) > 0){
     echo "<script>
-    document.location.href = 'index.php?nama=$nama' ;
+    document.location.href = 'index.php' ;
     </script>";
     exit();
 }else{

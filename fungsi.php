@@ -2,6 +2,20 @@
 
 $conn = mysqli_connect('localhost','root','','shop');
 
+// BISI ADA YANG MASUK
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+        $url = "https://";   
+    else {
+        $url = "http://";   
+        $url.= $_SERVER['HTTP_HOST'];   
+        $url.= $_SERVER['REQUEST_URI'];    
+    }
+
+    if( $url === "http://localhost/shopman/fungsi.php"){
+        header("Location:index.php");
+        exit();
+    }
+
 function ambil($query){
     global $conn;
     $result = mysqli_query($conn,$query);

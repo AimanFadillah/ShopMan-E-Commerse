@@ -38,6 +38,7 @@ if( isset($_POST["kirimLogin"]) ){
         if(password_verify($password,$row["password"]) ){
             $nama = $row["id"];
             $_SESSION["login"] = true;
+            $_SESSION["user"] = $nama;
             echo "
             <script>
                 document.location.href = 'index.php?nama=$nama' ;
