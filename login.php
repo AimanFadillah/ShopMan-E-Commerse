@@ -41,7 +41,7 @@ if( isset($_POST["kirimLogin"]) ){
             $_SESSION["user"] = $nama;
             echo "
             <script>
-                document.location.href = 'index.php?nama=$nama' ;
+                document.location.href = 'index.php' ;
             </script>";
         }
     }
