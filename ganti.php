@@ -17,31 +17,18 @@ session_start();
 
     
 
-$nama = $_GET["nama"];
-// KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
-if($_SESSION["login"] === true){
-    $nama = $_GET["nama"];
-    $user = ambil("SELECT * FROM user WHERE id = $nama ");
-    if(empty($user) ){
-        echo "<script>
-        document.location.href = 'logout.php';
-        </script>";
-    }
-}
-
-
 $id = $_GET["id"];
 $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
 
 if( isset( $_POST["kirim"] ) ){
     if(ganti($_POST) > 0){
         echo "<script>
-        document.location.href = 'produk.php?id=$id&nama=$nama' ;
+        document.location.href = 'produk.php?id=$id' ;
         </script>";
     }else{
         echo "<script>
             alert('Anda tidak mengedit apapun')
-            document.location.href = 'produk.php?id=$id&nama=$nama' ;
+            document.location.href = 'produk.php?id=$id' ;
             </script>";
     }
 };
