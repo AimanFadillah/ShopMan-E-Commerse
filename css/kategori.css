@@ -38,13 +38,18 @@ img{
     font-weight: 100;
 }
 
-.navbar ul li.tambah{
-    background-color: green;
+.navbar ul li.profil{
+    margin-right: -10px;
     box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    padding: 10px;
 }
+
+
+.navbar ul li.profil a{
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+
 
 .navbar ul li.login{
     background-color: blue;

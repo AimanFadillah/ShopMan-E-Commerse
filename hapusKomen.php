@@ -22,7 +22,7 @@ $id = $_GET["id"];
 $id_komen = $_GET["id_komen"];
 $user_nama = $_SESSION["user"];
 $nama_komen = $_GET["nama_komen"];
-$user = ambil("SELECT * FROM user WHERE id = $user_nama")[0];
+$user = ambil("SELECT * FROM user WHERE id = '$user_nama' ")[0];
 
 
 
@@ -36,13 +36,14 @@ if($user["nama"] !== $nama_komen){
     die();
 }
 
-if(hapusKomentar($id,$id_komen) > 0){
+if(hapusKomentar($id_komen) > 0){
     echo "<script>
             document.location.href = 'produk.php?id=$id';
             </script>";
 }else{
     echo "<script>
-    alert('naha gagal')
+    alert('naha gagal');
+    document.location.href = 'produk.php?id=$id';
     </script>";
 }
 

@@ -17,12 +17,11 @@
     }
 
     
-
     $id = $_GET["id"];
     $idkomen = $_GET["id_komen"];
     $user_nama = $_SESSION["user"];
-    $user = ambil("SELECT * FROM user WHERE id = $user_nama")[0];
-    $komen = ambil("SELECT * FROM komentar_$id WHERE id = $idkomen")[0];
+    $user = ambil("SELECT * FROM user WHERE id = '$user_nama' ")[0];
+    $komen = ambil("SELECT * FROM komentar WHERE id = $idkomen ")[0];
 
 
     if($user["nama"] !== $komen["nama"]){
@@ -54,7 +53,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Komentar</title>
+    <title>Edit Komentar</title>
     <link rel="stylesheet" href="css/editKomen.css">
 </head>
 <body>
@@ -62,10 +61,8 @@
     <div class="container">
         <h1>Edit Komentar</h1>
         <form action="" method="POST">
-            <input type="hidden" name="id" value="<?= $id ?>">
             <input type="hidden" name="id_komen" value="<?= $idkomen ?>">
-            <input type="hidden" name="nama" id="nama" value="<?= $user["nama"] ?>">
-
+            <!-- hidden -->
             <label for="komentar">User : <?= $user["nama"] ?></label><br>
             <textarea name="komentar" id="komentar"><?= $komen["komentar"] ?></textarea>
             <div class="mid">

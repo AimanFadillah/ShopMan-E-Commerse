@@ -1,0 +1,224 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #ddd;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+button{
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+/* container */
+
+.container{
+    width: 100%;
+    display: flex;
+}
+
+/* navbar */
+
+.navbar{
+    width: 15%;
+    bottom: 0;
+    background-color:#ee4d2d ;
+}
+
+.navbar ul li {
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    text-align: center;
+    background-color: orange;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}  
+
+.navbar ul li.none{
+    background: none;
+    box-shadow: none;
+    height: 300px;
+}  
+
+.navbar ul li.kembali{
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}   
+
+.navbar ul li.keranjang{
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    text-align: center;
+    background-color: purple;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+li.keranjang a,
+li.logout a{
+    color: white;
+}
+
+.navbar ul li.logout{
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    text-align: center;
+    background-color: red;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}   
+
+/* isi */
+.isi{
+    width: 100%;
+    bottom: 0;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+/* utama */
+.utama{
+    padding: 10px;
+    background-color: #ee4d2d;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.utama .head{
+    display: flex;
+}
+
+.utama .head img {
+    margin-right: 20px;
+}
+
+.utama .head h1{
+    margin-top: 10px;
+}
+
+
+
+.utama p {
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+/* toko */
+
+.toko .navbarToko{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: #ee4d2d;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 5px;
+}
+
+.toko .tambahToko{
+    margin-right: 5px;
+    padding: 2px 6px 2px 2px ;
+    background-color: green;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    color: white;
+    font-size: 23px;
+}
+
+.toko ul {
+    margin-top: 15px;
+}
+
+.barangToko {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.barangToko .kiriToko {
+    display: flex;
+    align-items: center;
+}
+
+.barangToko .kiriToko img.gambarToko{
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.barangToko .kiriToko h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.barangToko .kananToko{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.barangToko .kananToko a{
+    font-size: 30px;
+}
+
+.barangToko .kananToko h1{
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.barangToko .kananToko a.editToko{
+    margin-right: 10px;
+    background-color: blue;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 3px;
+    padding: 1px 5px 3px 5px;
+}
+
+.barangToko .kananToko a.hapusToko{
+    background-color: red;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 3px;
+    padding: 1px 5px 3px 5px;
+}

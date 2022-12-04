@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #ddd;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+img{
+    border-radius: 5px 5px 0 0;
+    width: 200px;
+    height: 200px;
+}
+
+a.kembali h1{
+    color: white;
+}
+
+a h1{
+    color: black;
+}
+
+/* navbar */
+
+.navbar{
+    display: flex;
+    padding: 30px;  
+    background-color: purple;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    align-items: center;
+    justify-content: space-between;
+    color: #ee4d2d;
+}
+
+.navbar h1{
+    font-weight: 100;
+}
+
+.navbar ul li.beli{
+    background-color: black;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 10px 40px 10px 40px;
+}
+
+.navbar ul li.login{
+    background-color: blue;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 10px 20px 10px 20px;
+}
+
+.navbar a{
+    color: white;
+    font-size: 20px;
+}
+
+/* produk */
+
+.data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data .totalHarga{
+    color: #ee4d2d;
+    margin: 0px 30px;
+    margin-top: 20px;
+}
+
+.produk{
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: #ee4d2d;
+}
+
+.produk .kiri{
+    display: flex;
+    align-items: center;
+}
+
+.produk .kiri input[type="checkbox"]{
+    width: 80px;
+    height: 80px;
+    margin-right: 30px;
+}
+
+.produk .kiri img{
+    margin-right: 30px;
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+}
+
+.produk .kanan {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.produk .kanan a.hapus{
+    font-size: 20px;
+    color:white;
+    margin-left: 20px;
+    padding: 5px 10px 5px 10px;
+    background-color: red;
+    border-radius: 5px;
+}

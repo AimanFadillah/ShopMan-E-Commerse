@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2022 at 10:03 AM
+-- Generation Time: Dec 04, 2022 at 04:27 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -50,95 +50,45 @@ INSERT INTO `kategori` (`id`, `kategori`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komentar_60`
+-- Table structure for table `keranjang`
 --
 
-CREATE TABLE `komentar_60` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `komentar` varchar(150) DEFAULT NULL
+CREATE TABLE `keranjang` (
+  `id_produk` int(11) DEFAULT NULL,
+  `user` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `komentar_60`
+-- Dumping data for table `keranjang`
 --
 
-INSERT INTO `komentar_60` (`id`, `nama`, `komentar`) VALUES
-(14, 'aiman', 'Real Smile\r\n');
+INSERT INTO `keranjang` (`id_produk`, `user`) VALUES
+(61, 'aiman'),
+(62, 'ilyas'),
+(63, 'ilyas'),
+(65, 'abyan'),
+(63, 'abyan'),
+(64, 'abyan');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komentar_61`
+-- Table structure for table `komentar`
 --
 
-CREATE TABLE `komentar_61` (
+CREATE TABLE `komentar` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) DEFAULT NULL,
-  `komentar` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `komentar_62`
---
-
-CREATE TABLE `komentar_62` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `komentar` varchar(150) DEFAULT NULL
+  `komentar` varchar(255) DEFAULT NULL,
+  `id_produk` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `komentar_62`
+-- Dumping data for table `komentar`
 --
 
-INSERT INTO `komentar_62` (`id`, `nama`, `komentar`) VALUES
-(2, 'aiman', 'tulip ip ip\r\n');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `komentar_63`
---
-
-CREATE TABLE `komentar_63` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `komentar` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `komentar_63`
---
-
-INSERT INTO `komentar_63` (`id`, `nama`, `komentar`) VALUES
-(1, 'aiman', 'boleh\r\n');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `komentar_64`
---
-
-CREATE TABLE `komentar_64` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `komentar` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `komentar_65`
---
-
-CREATE TABLE `komentar_65` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `komentar` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `komentar` (`id`, `nama`, `komentar`, `id_produk`) VALUES
+(1, 'aiman', 'bug berhasil dicegah', '60');
 
 -- --------------------------------------------------------
 
@@ -152,7 +102,6 @@ CREATE TABLE `produk` (
   `keterangan` varchar(200) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
   `img` varchar(50) DEFAULT NULL,
-  `id_komen` varchar(50) DEFAULT NULL,
   `kategori` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -160,13 +109,13 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `id_komen`, `kategori`) VALUES
-(60, 'Koala', 'mahal yap', 1200, 'Koala.jpg', '60', 'hewan'),
-(61, 'Jeruk bali', 'yoi', 5000, 'jeruk.jpg', '61', 'makanan'),
-(62, 'Tulip', 'Harga nya terjakau cuy', 2000, 'Tulips.jpg', '62', 'makanan'),
-(63, 'Bandar', 'yooo', 10000, 'Penguins.jpg', '63', 'hewan'),
-(64, 'Rumah Ytta', 'ya', 2000000, 'Lighthouse.jpg', '64', 'perabotan'),
-(65, 'Jelly Fish', 'yooo', 140000, 'Jellyfish.jpg', '65', 'hewan');
+INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `kategori`) VALUES
+(60, 'Koala', 'mahal yap', 12000, 'Koala.jpg', 'hewan'),
+(61, 'Jeruk bali', 'yoi', 5000, 'jeruk.jpg', 'makanan'),
+(62, 'Tulip ip ip', 'Harga nya terjakau cuy', 2000, 'Tulips.jpg', 'makanan'),
+(63, 'Bandar', 'yooo', 10000, 'Penguins.jpg', 'hewan'),
+(64, 'Rumah Ytta', 'ya', 2000000, 'Lighthouse.jpg', 'perabotan'),
+(65, 'ikan ubur ubur', 'yooo', 140000, 'Jellyfish.jpg', 'hewan');
 
 -- --------------------------------------------------------
 
@@ -175,7 +124,7 @@ INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `id_komen`, 
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -185,8 +134,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `password`) VALUES
-(638310, 'aiman', '$2y$10$Z.d9UCtPYkhbgJ/9Z5dEiOmhkPlP8.7T7HYrEMb8WmCsY1Fx8uFCi'),
-(6383143, 'ilyas', '$2y$10$PYWzJn2YoAIkLmaywLAaNOi0JqOAyH0CIm2JbU7kpSc6ac94TaQni');
+('638310', 'aiman', '$2y$10$Z.d9UCtPYkhbgJ/9Z5dEiOmhkPlP8.7T7HYrEMb8WmCsY1Fx8uFCi'),
+('6383143', 'ilyas', '$2y$10$PYWzJn2YoAIkLmaywLAaNOi0JqOAyH0CIm2JbU7kpSc6ac94TaQni'),
+('6389c71eb3a66', 'pradika', '$2y$10$APEbC0JFwymoe4Eoq5Ds1usQhA9.O8GnjQ5eokhW3Ii291McdjUMm'),
+('638ad16e3383c', 'abyan', '$2y$10$f2MLud/dWDTsgcvFAnopTezMcYNGho/DCFp5YecwmIsY0U8eZM4A2');
 
 --
 -- Indexes for dumped tables
@@ -199,39 +150,9 @@ ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `komentar_60`
+-- Indexes for table `komentar`
 --
-ALTER TABLE `komentar_60`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `komentar_61`
---
-ALTER TABLE `komentar_61`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `komentar_62`
---
-ALTER TABLE `komentar_62`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `komentar_63`
---
-ALTER TABLE `komentar_63`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `komentar_64`
---
-ALTER TABLE `komentar_64`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `komentar_65`
---
-ALTER TABLE `komentar_65`
+ALTER TABLE `komentar`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -257,40 +178,16 @@ ALTER TABLE `kategori`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `komentar_60`
+-- AUTO_INCREMENT for table `komentar`
 --
-ALTER TABLE `komentar_60`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+ALTER TABLE `komentar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `komentar_61`
+-- AUTO_INCREMENT for table `produk`
 --
-ALTER TABLE `komentar_61`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `komentar_62`
---
-ALTER TABLE `komentar_62`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `komentar_63`
---
-ALTER TABLE `komentar_63`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `komentar_64`
---
-ALTER TABLE `komentar_64`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `komentar_65`
---
-ALTER TABLE `komentar_65`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `produk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

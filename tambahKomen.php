@@ -16,7 +16,7 @@
 
     $id = $_GET["id"];
     $user_nama = $_SESSION["user"];
-    $user = ambil("SELECT * FROM user WHERE id = $user_nama")[0];
+    $user = ambil("SELECT * FROM user WHERE id = '$user_nama' ")[0];
     // KEAMANAN JIKA ADA YANG NGUTAK ATIK ID
 
 
