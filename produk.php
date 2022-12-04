@@ -7,19 +7,40 @@
     }else{
         $_SESSION["login"] === true;
     }
+    
+    if(isset($_SESSION["user"])){
+        $id = $_GET["id"];
+        $_SESSION["login"] === true;
+        $id_user = $_SESSION["user"];
+        $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
+        $user_name = $user["nama"];
+        $keranjang = ambil("SELECT * FROM keranjang WHERE id_produk = $id AND user = '$user_name' ");
+    }
+
+   
+    
 
 
     $id = $_GET["id"];
-
+   
     $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
     $nama_produk = $produk["produk"];
-    $id_komen = $produk["id_komen"];
 
-    $komentar = ambil("SELECT * FROM komentar_$id_komen");
+    $komentar = ambil("SELECT * FROM komentar WHERE id_produk = '$id' ");
 
+
+    
     // random
 
     $produk_rekomendasi = ambil("SELECT * FROM produk ORDER BY RAND() LIMIT 5");
+
+
+    if(isset($_POST["keranjang"] )){
+        if(tambahkeranjang($_POST) > 0 ){
+            header("Location:produk.php?id=$id");
+            exit();
+        }
+    }
 
 ?>
 
@@ -45,9 +66,7 @@
         <?php endif ; ?>
         <?php if($_SESSION["login"] === true) : ?>  
         <ul class="pilihan">
-            <li class="delete"><a href="Delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">Delete</a></li>
-            <li class="ganti"><a href="ganti.php?id=<?= $produk["id"] ?>">Edit</a></li>
-            <li class="tambah"><a href="tambah.php">Tambah</a></li>
+           
         </ul>
         <?php endif ; ?>
     </div>
@@ -59,10 +78,26 @@
         <div class="penjualan">
             <div class="list_produk">
                 <h1 class="judul"><?= $produk["produk"] ?></h1>
-                <h1 class="harga">Rp.<?= $produk["harga"] ?></h1>
+                <h1 class="harga">💰 <?= $produk["harga"] ?></h1>
             </div>
             <div class="list_akhir">
-                <div  class="tombol_keranjang"><a href="#">Keranjang</a></div>
+                <?php if($_SESSION["login"] === false) { ?>
+                    <div  class="tombol_keranjang">
+                    <a id="keranjang" href="login.php">Keranjang</a>
+                    </div>
+                <?php } elseif(empty($keranjang)) { ?>
+                <div  class="tombol_keranjang">
+                <form action="" method="post">
+                    <input type="hidden" name="id_produk" id="id_produk" value="<?= $produk["id"] ?>">
+                    <button name="keranjang" id="keranjang" type="filter_input">Keranjang</button>
+                    <input type="hidden" name="user" id="user" value="<?= $user["nama"] ?>">
+                </form>
+                </div>
+                <?php } elseif(!empty($keranjang)) { ?>
+                    <div  class="sudah_keranjang">
+                    <a class="sudah" href="keranjang.php">Sudah di Keranjang</a>
+                    </div>
+                <?php } ?>
                 <div  class="tombol_beli"><a href="#">Beli</a></div>
             </div>
         </div>
@@ -109,7 +144,7 @@
                     <a href="produk.php?id=<?= $produk_random["id"] ?>">
                         <img src="img/<?= $produk_random["img"] ?>">
                         <h4 ><?= $produk_random["produk"] ?></h4>
-                        <h3>Rp.<?= $produk_random["harga"] ?></h3>
+                        <h3>💰<?= $produk_random["harga"] ?></h3>
                     </a>
                 </div>
             </li>

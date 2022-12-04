@@ -34,7 +34,10 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
                 <li class="login"><a href="login.php">Login</a></li>
             <?php endif ; ?>
             <?php if($_SESSION["login"] === true) : ?>    
-                <li class="tambah"><a href="tambah.php">Tambah</a></li>
+                <li class="profil">
+                <a href="profil.php">🏢</a>
+                <a href="keranjang.php">🛒 </a>
+                </li>
             <?php endif ; ?>
            
         </ul>
@@ -53,7 +56,7 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
                     <a href="produk.php?id=<?= $produknya["id"] ?>">
                         <img src="img/<?= $produknya["img"] ?>">
                         <h4 ><?= $produknya["produk"] ?></h4>
-                        <h3>Rp.<?= $produknya["harga"] ?></h3>
+                        <h3>💰 <?= $produknya["harga"] ?></h3>
                     </a>
                 </div>
             </li>

@@ -32,24 +32,15 @@ function tambah($tambah){
     $harga = htmlspecialchars( $tambah["harga"] );
     $tentang = htmlspecialchars( $tambah["tentang_produk"] );
     $kategori = $tambah["kategori"];
-    $id_komen = $tambah["id_komen"];
     $gambar = upload();
 
     if(!$gambar){
         return false;
     }
 
-    // menambahkan tabel komen
-    $komen = "CREATE TABLE komentar_$id_komen(
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        nama VARCHAR(50),
-        komentar VARCHAR(150)
-    );";
-
-    mysqli_query($conn,$komen);
     
     // menambahkan isi dari tabel produk
-    $data = "INSERT INTO produk VALUES ('$id_komen','$produk','$tentang','$harga','$gambar','$id_komen','$kategori')";
+    $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$kategori')";
     mysqli_query($conn,$data);
 
 
@@ -115,7 +106,6 @@ function cari($data){
 
 function hapus($id){
     global $conn;
-    mysqli_query($conn,"DROP TABLE komentar_$id");
 
     $img = ambil("SELECT img FROM produk WHERE id = $id")[0];
 
@@ -123,8 +113,10 @@ function hapus($id){
 
     unlink("img/$gambar");
 
-
+    mysqli_query($conn,"DELETE FROM komentar WHERE id_produk = '$id' ");
+    mysqli_query($conn,"DELETE FROM keranjang WHERE id_produk = $id ");
     mysqli_query($conn,"DELETE FROM produk WHERE id = $id ");
+
     return mysqli_affected_rows($conn);
 }
 
@@ -166,7 +158,7 @@ function tambahKomentar($data){
     $nama = htmlspecialchars( $data["nama"] );
     $komen = htmlspecialchars( $data["komentar"] );
 
-    $isi = "INSERT INTO komentar_$id VALUES ('','$nama','$komen');";
+    $isi = "INSERT INTO komentar VALUES ('','$nama','$komen','$id');";
 
     mysqli_query($conn,$isi);
 
@@ -174,10 +166,10 @@ function tambahKomentar($data){
 
 }
 
-function hapusKomentar($id,$id_komen){
+function hapusKomentar($id_komen){
     global $conn;
    
-    $isi = "DELETE FROM komentar_$id WHERE id = $id_komen";
+    $isi = "DELETE FROM komentar WHERE id = $id_komen ";
     mysqli_query($conn,$isi);
 
     return mysqli_affected_rows($conn);
@@ -185,13 +177,10 @@ function hapusKomentar($id,$id_komen){
 
 function editKomentar($data){
     global $conn;
-    $id = $data["id"];
     $idkomen = $data["id_komen"];
-    $nama = $data["nama"];
     $komentar = $data["komentar"];
 
-    $isi = "UPDATE komentar_$id SET
-            nama = '$nama',
+    $isi = "UPDATE komentar SET
             komentar = '$komentar'
             WHERE id = $idkomen;
     ";
@@ -234,6 +223,22 @@ function daftar($data){
     return mysqli_affected_rows($conn);
 
 
+}
+
+function tambahkeranjang($data){
+    global $conn;
+    $id_produk = $data["id_produk"];
+    $user  = $data["user"];
+
+    mysqli_query($conn,"INSERT INTO keranjang VALUES ($id_produk,'$user') ");
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapusKeranjang($id_produk,$user){
+    global $conn;
+    mysqli_query($conn,"DELETE FROM keranjang WHERE id_produk = $id_produk AND user = '$user' ");
+    return mysqli_affected_rows($conn);
 }
 
 ?>

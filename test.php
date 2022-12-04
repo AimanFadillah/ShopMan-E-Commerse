@@ -15,9 +15,6 @@ require 'fungsi.php';
         header("Location:index.php");
         exit();
     }
-
-
-
-
+   
 
 ?>

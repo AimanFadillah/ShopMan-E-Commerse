@@ -18,7 +18,7 @@ session_start();
 if(isset($_POST["kirim"]) ){
     if(tambah($_POST) > 0){
         echo "<script>
-        document.location.href = 'index.php' ;
+        document.location.href = 'profil.php' ;
         </script>";
       }else{       
         echo "<script>
@@ -27,8 +27,6 @@ if(isset($_POST["kirim"]) ){
     }
 }
 
-$id_produk = ambil("SELECT MAX(id) FROM PRODUK")[0];
-$id_komen = $id_produk["MAX(id)"] + 1 ;
 
 
 ?>
@@ -48,7 +46,6 @@ $id_komen = $id_produk["MAX(id)"] + 1 ;
         <form action="" method="post" enctype="multipart/form-data">
             
             <h1>Tambah Barang</h1>
-            <input type="hidden" name="id_komen" id="id_komen" value="<?= $id_komen ?>">
             <label for="produk">Nama Produk </label><br>
             <input type="text" name="produk" id="produk" autocomplete="off" require> 
             <label for="Harga">Harga Produk </label><br>

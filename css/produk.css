@@ -138,6 +138,31 @@ img{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
+.list_akhir .sudah_keranjang{
+    font-size: 18px;
+    color: white;
+    width: 50%;
+    padding: 30px;
+    margin-right: 8px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: purple;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.list_akhir .tombol_keranjang button {
+    background: none;
+    color: white;
+    font-size: 17px;
+}
+
+.list_akhir .sudah_keranjang a.sudah {
+    color: white;
+    font-size: 17px;
+    font-weight: 100;
+}
+
+
 /* komentar */
 
 .komentar{

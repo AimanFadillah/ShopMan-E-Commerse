@@ -69,25 +69,16 @@ img{
     padding: 10px 20px 10px 20px;
 }
 
-.navbar ul li.tambah{
+.navbar ul li.profil{
     margin-right: -10px;
-    background-color: green;
     box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    padding: 10px;
 }
 
-.navbar ul li.logout{
-    margin-right: 10px;
-    margin-left: -85px;
-    background-color: red;
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    padding: 10px;
-}
 
+.navbar ul li.profil a{
+    font-size: 30px;
+    margin-left: 10px;
+}
 
 .navbar a{
     color: white;
