@@ -35,15 +35,24 @@ $produknya = ambil("SELECT * FROM produk");
 <!-- main -->
 <div class="container">
     <div class="navbar">
+        <?php if($_SESSION["user"] === $id_user ) : ?>
         <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
-            <li><a href="profil.php">Profil</a></li>
+            <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
             <li><a>Edit</a></li>
             <li><a href="toko.php">Toko</a></li>
             <li class="keranjang"><a href="keranjang.php">Keranjang</a></li>
             <li class="logout"><a href="logout.php">Log Out</a></li>
             <li class="none"></li>
         </ul>
+        <?php endif ; ?>
+        <?php if($_SESSION["user"] !== $id_user ) : ?>
+            <ul>
+            <li class="kembali"><a href="index.php">Kembali</a></li>
+            <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
+            <li class="none2"></li>
+        </ul>
+        <?php endif ; ?>
     </div>
     <div class="isi">
         <!-- utama -->

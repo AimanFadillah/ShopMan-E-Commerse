@@ -32,6 +32,7 @@ function tambah($tambah){
     $harga = htmlspecialchars( $tambah["harga"] );
     $tentang = htmlspecialchars( $tambah["tentang_produk"] );
     $kategori = $tambah["kategori"];
+    $pemilik = $tambah["pemilik"];
     $gambar = upload();
 
     if(!$gambar){
@@ -40,7 +41,7 @@ function tambah($tambah){
 
     
     // menambahkan isi dari tabel produk
-    $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$kategori')";
+    $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$kategori','$pemilik')";
     mysqli_query($conn,$data);
 
 
@@ -99,7 +100,8 @@ function upload(){
 function cari($data){
     $produk = "SELECT * FROM produk WHERE produk LIKE '%$data%' OR
                                        harga LIKE '%$data%' OR
-                                       kategori LIKE '%$data%' ";
+                                       kategori LIKE '%$data%' OR 
+                                       keterangan LIKE '%$data%' ";
     
     return ambil($produk);
 }

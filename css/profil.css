@@ -62,6 +62,12 @@ img{
     height: 300px;
 }  
 
+.navbar ul li.none2{
+    background: none;
+    box-shadow: none;
+    height: 500px;
+}  
+
 .navbar ul li.kembali{
     margin: 5px;
     margin-bottom: 10px;

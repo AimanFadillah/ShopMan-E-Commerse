@@ -56,7 +56,7 @@ $produknya = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
              <ul>
                  <?php foreach($produknya as $produk) : ?>
                  <li>
-                 <a href="#">
+                 <a href="produk.php?id=<?= $produk["id"] ?>">
                     <div class="barangToko">
                         <div class="kiriToko">
                         <img class="gambarToko" src="img/<?= $produk["img"] ?>" alt="gambar">

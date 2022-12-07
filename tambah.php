@@ -18,7 +18,7 @@ session_start();
 if(isset($_POST["kirim"]) ){
     if(tambah($_POST) > 0){
         echo "<script>
-        document.location.href = 'profil.php' ;
+        document.location.href = 'toko.php' ;
         </script>";
       }else{       
         echo "<script>
@@ -27,6 +27,9 @@ if(isset($_POST["kirim"]) ){
     }
 }
 
+$id_user = $_SESSION["user"];
+$user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
+$nama_user = $user['nama'];
 
 
 ?>
@@ -67,6 +70,8 @@ if(isset($_POST["kirim"]) ){
             <label for="tentang_produk">Tentang Produk </label><br>
             
             <textarea name="tentang_produk" id="tentang_produk" class="tentang_produk" autocomplete="off" require></textarea>
+            <!-- hidden -->
+            <input type="hidden" name="pemilik" id="pemilik" value="<?= $id_user ?>">
             <div class="botton" style="  display: flex;justify-content: center;">
             <button type="submit" value="Kirim" name="kirim">Kirim</button>
             </div>

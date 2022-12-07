@@ -20,7 +20,7 @@ $id = $_GET["id"];
 
 if(hapus($id) > 0){
     echo "<script>
-    document.location.href = 'profil.php' ;
+    document.location.href = 'toko.php' ;
     </script>";
     exit();
 }else{

@@ -136,10 +136,12 @@
                 <div class="atas">
                     <div class="kiri"><h3><?= $komen["nama"] ?></h3></div>
                     <div class="kanan">
-                    <?php if($_SESSION["login"] === true) : ?>  
+                    <?php if($_SESSION["login"] === true) : ?> 
+                        <?php if($user_name === $komen["nama"]) : ?>
                         <a href="editKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" class="editbutton">Edit</a>
                         <a href="hapusKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>&nama_komen=<?= $komen["nama"] ?>" onclick="return confirm('Yakin')">Hapus</a>
                         <?php endif ; ?>
+                    <?php endif ; ?>
                     </div>
                 </div>
                 <p><?= $komen["komentar"] ?></p>
