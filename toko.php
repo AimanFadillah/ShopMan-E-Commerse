@@ -17,7 +17,7 @@ if( !isset( $_SESSION["login"] ) ){
 
 //  toko
 
-$produknya = ambil("SELECT * FROM produk");
+$produknya = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
 
 ?>
 
@@ -37,7 +37,7 @@ $produknya = ambil("SELECT * FROM produk");
     <div class="navbar">
         <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
-            <li><a href="profil.php">Profil</a></li>
+            <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
             <li><a>Edit</a></li>
             <li><a href="toko.php">Toko</a></li>
             <li class="keranjang"><a href="keranjang.php">Keranjang</a></li>

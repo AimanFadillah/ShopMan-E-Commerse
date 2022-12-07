@@ -36,7 +36,7 @@ ambil("SELECT SUM(harga),COUNT(produk) FROM produk INNER JOIN keranjang ON keran
 
 <!-- navbar -->
 <div class="navbar">
-        <a href="profil.php" class="kembali"><h1>Kembali</h1></a>
+        <a href="index.php" class="kembali"><h1>Kembali</h1></a>
 
         <!-- navbar -->
         <ul>

@@ -35,7 +35,7 @@ $produk = ambil("SELECT * FROM produk WHERE kategori like '%$kategori%' ");
             <?php endif ; ?>
             <?php if($_SESSION["login"] === true) : ?>    
                 <li class="profil">
-                <a href="profil.php">🙍‍♂️</a>
+                <a href="profil.php?user=<?= $_SESSION["user"] ?>">🙍‍♂️</a>   
                 <a href="profil.php">🏢</a>
                 <a href="keranjang.php">🛒 </a>
                 </li>

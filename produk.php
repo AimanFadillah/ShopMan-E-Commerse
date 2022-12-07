@@ -28,7 +28,8 @@
 
     $komentar = ambil("SELECT * FROM komentar WHERE id_produk = '$id' ");
 
-
+    $id_pembuat = $produk["pemilik"];
+    $nama_pembuat = ambil("SELECT * FROM user WHERE id = '$id_pembuat' ")[0]; 
     
     // random
 
@@ -102,6 +103,19 @@
             </div>
         </div>
     </div>
+
+    <!-- pembuat -->
+    <a href="profil.php?user=<?= $produk["pemilik"] ?>">
+
+    <div class="pembuatProduk">
+        <div class="keteranganPembuat">
+        <img src="img_kategori/bawaan.jpg" alt="gambar" class="imgPembuat">
+        <h1><?= $nama_pembuat["nama"]?></h1>
+        </div>
+        
+    </div>
+
+    </a>
     
     </div>
 

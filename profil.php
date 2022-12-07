@@ -12,7 +12,7 @@ if( !isset( $_SESSION["login"] ) ){
      exit();
  }
 
- $id_user = $_SESSION["user"];
+ $id_user = $_GET["user"];
  $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
 
 //  toko
