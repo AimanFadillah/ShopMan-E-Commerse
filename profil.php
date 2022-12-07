@@ -15,21 +15,6 @@ if( !isset( $_SESSION["login"] ) ){
  $id_user = $_SESSION["user"];
  $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
 
- $utama = false;
- $toko = true;
-
-
-// pengendali
- if(isset($_POST["utama"])){
-     $utama = true;
-     $toko = false;
- }
-
- if(isset($_POST["toko"])){
-     $utama = false;
-     $toko = true;
- }
-
 //  toko
 
 $produknya = ambil("SELECT * FROM produk");
@@ -50,21 +35,19 @@ $produknya = ambil("SELECT * FROM produk");
 <!-- main -->
 <div class="container">
     <div class="navbar">
-        <form action="" method="POST">
         <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
-            <li><button name="utama" id="utama">Profil</button></li>
+            <li><a href="profil.php">Profil</a></li>
             <li><a>Edit</a></li>
-            <li><button name="toko" id="toko">Toko</button></li>
+            <li><a href="toko.php">Toko</a></li>
             <li class="keranjang"><a href="keranjang.php">Keranjang</a></li>
             <li class="logout"><a href="logout.php">Log Out</a></li>
             <li class="none"></li>
         </ul>
-        </form>
     </div>
     <div class="isi">
         <!-- utama -->
-        <?php if($utama === true) : ?>
+
         <div class="utama">
             <div class="head">
                 <img src="img_kategori/bawaan.jpg" alt="gambar">
@@ -75,36 +58,9 @@ $produknya = ambil("SELECT * FROM produk");
             </div>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias reprehenderit incidunt ipsam, illum inventore hic quo maxime id cum aliquid ab dicta, expedita reiciendis magnam! Soluta magni tenetur accusamus at.</p>
         </div>
-        <?php endif ; ?>
         <!-- toko -->
-        <?php if($toko === true) : ?>
-        <div class="toko">
-             <div class="navbarToko">
-                 <h1>🏢Toko</h1>
-                 <a class="tambahToko" href="tambah.php">➕Tambah</a>
-             </div>
-             <ul>
-                 <?php foreach($produknya as $produk) : ?>
-                 <li>
-                 <a href="#">
-                    <div class="barangToko">
-                        <div class="kiriToko">
-                        <img class="gambarToko" src="img/<?= $produk["img"] ?>" alt="gambar">
-                        <h1><?= $produk["produk"] ?></h1>
-                        </div>
-                        <div class="kananToko">
-                            <h1 class="HargaToko"> <?= $produk["kategori"] ?> | 💰<?= $produk["harga"] ?></h1>
-                            <a class="editToko" href="ganti.php?id=<?= $produk["id"] ?>">🔧</a>
-                            <a class="hapusToko" href="delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">❌</a>
-                        </div>
-                    </div>
-                 </a>
-                </li>
-                <?php endforeach ; ?>
-             </ul>
-        </div>
-        <?php endif ; ?>
-    </div>
+
+      
 </div>
 
 
