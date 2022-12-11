@@ -7,6 +7,9 @@
     }else{
         $_SESSION["login"] === true;
     }
+
+    $id = $_GET["id"];
+    $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
     
     if(isset($_SESSION["user"])){
         $id = $_GET["id"];
@@ -15,15 +18,16 @@
         $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
         $user_name = $user["nama"];
         $keranjang = ambil("SELECT * FROM keranjang WHERE id_produk = $id AND user = '$user_name' ");
+        $sisaDompet = $user["dompet"] - $produk["harga"];
+
+        if($sisaDompet < 0){
+            $sisaDompet = "Tidak Cukup";
+        }
     }
 
    
     
-
-
-    $id = $_GET["id"];
-   
-    $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
+    
     $nama_produk = $produk["produk"];
 
     $komentar = ambil("SELECT * FROM komentar WHERE id_produk = '$id' ");
@@ -49,6 +53,19 @@
         if(tambahkeranjang($_POST) > 0 ){
             header("Location:produk.php?id=$id");
             exit();
+        }
+    }
+
+    if(isset($_POST["jadiBeli"])){
+        if(pembelian($_POST["idProdukBeli"],$_POST["idPembeli"]) > 0 ){
+            header("Location:index.php");
+            exit();
+        }else{
+            echo "
+                <script>
+                    alert('lah gagal');
+                </script>
+            ";
         }
     }
 
@@ -87,7 +104,7 @@
      <div class="beliProduk">
         <div class="judulBeli">
           <h1>Pembelian</h1>
-          <h2>💰10000</h2>
+          <h2>💰<?= $user["dompet"] ?></h2>
         </div>
         <div class="isiBeli">
             <table>
@@ -101,15 +118,26 @@
                 </tr>
                 <tr>
                     <td>Sisa Dompet</td>
-                    <td> : 💰2000</td>
+                    <td> : 💰<?= $sisaDompet ?> </td>
                 </tr>
             </table>
         </div>
         <form action="" method="post">
-        <div class="pilihBeli">
+            
+        <?php if($sisaDompet === "Tidak Cukup") : ?>
+            <div class="pilihBeli">
             <button class="batalBeli" name="batalBeli">Batal</button>
-            <button class="jadiBeli">Beli</button>
         </div>
+        <?php endif ; ?>
+        <?php if($sisaDompet !== "Tidak Cukup") : ?>
+            <div class="pilihBeli">
+            <input type="hidden" name="idProdukBeli" value="<?= $id ?>">
+            <input type="hidden" name="idPembeli" value="<?= $id_user ?>">
+            <button class="batalBeli" name="batalBeli">Batal</button>
+            <button class="jadiBeli" name="jadiBeli">Beli</button>
+        </div>
+        <?php endif ; ?>
+       
         </form>
     </div>
      </div>

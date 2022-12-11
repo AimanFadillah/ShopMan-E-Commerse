@@ -220,7 +220,7 @@ function daftar($data){
     $idUser = uniqid();
     $password = password_hash($password,PASSWORD_DEFAULT);
 
-    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password')");
+    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password',2000)");
 
     return mysqli_affected_rows($conn);
 
@@ -240,6 +240,27 @@ function tambahkeranjang($data){
 function hapusKeranjang($id_produk,$user){
     global $conn;
     mysqli_query($conn,"DELETE FROM keranjang WHERE id_produk = $id_produk AND user = '$user' ");
+    return mysqli_affected_rows($conn);
+}
+
+function pembelian($produk,$user){
+    global $conn;
+    $produkBeli = ambil("SELECT * FROM produk WHERE id = $produk ")[0];
+    $idPemilik = $produkBeli["pemilik"];
+    // user
+    $userBeli = ambil("SELECT * FROM user WHERE id = '$user' ")[0];
+    $userPemilik = ambil("SELECT * FROM user WHERE id = '$idPemilik' ")[0];
+    // aksi
+    $dompet = $userBeli["dompet"];
+    $harga = $produkBeli["harga"];
+    $untung =  $userPemilik["dompet"] + $produkBeli["harga"];
+    $sisa = $dompet - $harga;
+   
+
+    mysqli_query($conn,"UPDATE user SET dompet = $sisa WHERE id = '$user' ");
+    mysqli_query($conn,"UPDATE user SET dompet = $untung WHERE id = '$idPemilik' ");
+    hapus($produk);
+
     return mysqli_affected_rows($conn);
 }
 
