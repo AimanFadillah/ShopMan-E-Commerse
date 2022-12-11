@@ -126,6 +126,13 @@ img{
     padding: 30px;
 }
 
+.list_akhir .tombol_beli button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+
 .list_akhir .tombol_keranjang{
     font-size: 18px;
     width: 50%;
@@ -196,6 +203,74 @@ img{
    color: purple;
 }
 
+/* beli */
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.beliProduk {
+    position: fixed;
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+}
+
+.judulBeli{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    background-color: yellowgreen;
+    border-radius: 5px 5px 0 0;
+    color: white;
+}
+
+
+.batasBeli{
+    padding: 1px;
+    background-color: yellowgreen;
+}
+
+.isiBeli {
+    background-color: white;
+    padding: 20px 10px 20px 10px;
+    font-weight: bold;
+    font-size: 23px;
+} 
+
+.pilihBeli{
+    display: flex;
+    padding: 10px 15px 10px 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: yellowgreen;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.pilihBeli button{
+    background: none;
+    border: none;
+}
+
+.pilihBeli button.batalBeli{
+    background-color: red;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    padding: 8px 13px 8px 13px;
+}
+
+
+.pilihBeli button.jadiBeli{
+    background-color: #ee4d2d;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px 8px 15px;
+}
 
 /* komentar */
 

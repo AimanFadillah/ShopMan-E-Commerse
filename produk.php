@@ -30,7 +30,16 @@
 
     $id_pembuat = $produk["pemilik"];
     $nama_pembuat = ambil("SELECT * FROM user WHERE id = '$id_pembuat' ")[0]; 
-    
+
+    // beli
+    $beli = false;
+    if(isset($_POST["beli"])){
+        $beli = true;
+    }
+
+    if(isset($_POST["batalBeli"])){
+        $beli = false;
+    }
     // random
 
     $produk_rekomendasi = ambil("SELECT * FROM produk ORDER BY RAND() LIMIT 5");
@@ -72,6 +81,41 @@
         <?php endif ; ?>
     </div>
 
+     <!-- beli -->
+     <?php if($beli === true) : ?>
+     <div class="center">
+     <div class="beliProduk">
+        <div class="judulBeli">
+          <h1>Pembelian</h1>
+          <h2>💰10000</h2>
+        </div>
+        <div class="isiBeli">
+            <table>
+                <tr>
+                    <td><?= $produk["produk"] ?></td>
+                    <td> : 💰<?= $produk["harga"] ?></td>
+                </tr>
+                <tr>
+                    <td><div class="batasBeli"></div></td>
+                    <td><div class="batasBeli"></div></td>
+                </tr>
+                <tr>
+                    <td>Sisa Dompet</td>
+                    <td> : 💰2000</td>
+                </tr>
+            </table>
+        </div>
+        <form action="" method="post">
+        <div class="pilihBeli">
+            <button class="batalBeli" name="batalBeli">Batal</button>
+            <button class="jadiBeli">Beli</button>
+        </div>
+        </form>
+    </div>
+     </div>
+    <?php endif ; ?>
+
+
     <!-- main -->
 
     <div class="produk">
@@ -86,6 +130,10 @@
                     <div  class="tombol_keranjang">
                     <a id="keranjang" href="login.php">Keranjang</a>
                     </div>
+                <?php } elseif($user_name === $nama_pembuat["nama"]) { ?>
+                    <div  class="tombol_keranjang">
+                    <a id="keranjang" href="keranjang.php">Check Dikeranjang</a>
+                    </div>
                 <?php } elseif(empty($keranjang)) { ?>
                 <div  class="tombol_keranjang">
                 <form action="" method="post">
@@ -99,11 +147,27 @@
                     <a class="sudah" href="keranjang.php">Sudah di Keranjang</a>
                     </div>
                 <?php } ?>
-                <div  class="tombol_beli"><a href="#">Beli</a></div>
+                <?php if($_SESSION["login"] === false) { ?>
+                    <div  class="tombol_beli">
+                        <a href="login.php">Beli</a>
+                    </div>
+                <?php } elseif($user_name === $nama_pembuat["nama"]) { ?>
+                <div  class="tombol_beli">
+                        <a href="toko.php">Check Ditoko</a>
+                    </div>
+                </div>
+                <?php } elseif($_SESSION["login"] === true) { ?>
+                <div  class="tombol_beli">
+                    <form action="" method="post">
+                        <button name="beli">Beli</button>
+                    </form>
+                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
 
+   
     <!-- pembuat -->
     <a href="profil.php?user=<?= $produk["pemilik"] ?>">
 
