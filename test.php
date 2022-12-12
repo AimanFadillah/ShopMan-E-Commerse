@@ -16,5 +16,5 @@ require 'fungsi.php';
         exit();
     }
    
-
+    
 ?>

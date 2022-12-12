@@ -16,10 +16,29 @@ if( !isset( $_SESSION["login"] ) ){
 $id_user = $_SESSION["user"];
 $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
 $user_name = $user["nama"];
+$beli = false;
+
+if(isset($_POST["beli"])){
+    $beli = true;
+}
+
+if(isset($_POST["batalBeli"])){
+    $beli = false;
+}
 
 $keranjang = ambil("SELECT * FROM produk INNER JOIN keranjang ON keranjang.id_produk = produk.id WHERE keranjang.user = '$user_name' ");
 $totalHarga = 
 ambil("SELECT SUM(harga),COUNT(produk) FROM produk INNER JOIN keranjang ON keranjang.id_produk = produk.id WHERE keranjang.user = '$user_name' ")[0];
+
+$sisaDompet = $user["dompet"] - $totalHarga["SUM(harga)"];
+
+
+if(isset($_POST["jadiBeli"])){
+   foreach($keranjang as $keranjangYOO){
+        pembelian($keranjangYOO["id_produk"],$id_user);
+   }
+   header("Location:index.php");
+}
 
 ?>
 
@@ -34,20 +53,69 @@ ambil("SELECT SUM(harga),COUNT(produk) FROM produk INNER JOIN keranjang ON keran
 </head>
 <body>
 
+  
+
+
 <!-- navbar -->
 <div class="navbar">
         <a href="index.php" class="kembali"><h1>Kembali</h1></a>
 
         <!-- navbar -->
+        <form action="" method="POST" >
         <ul>
             <?php if($_SESSION["login"] === false) : ?>    
                 <li class="login"><a href="login.php">Login</a></li>
             <?php endif ; ?>
             <?php if($_SESSION["login"] === true) : ?>    
-                <li class="beli"><a href="Beli.php">Beli</a></li>
+                <li class="beli"><button name="beli">Beli</button></li>
             <?php endif ; ?>
         </ul>
+        </form>
 </div>
+
+<!-- beli -->
+<?php if($beli === true) : ?>
+     <div class="center">
+        <div class="beliProduk">
+            <div class="judulBeli">
+                <h1>Pembelian</h1>
+                <h2>💰<?= $user["dompet"] ?></h2>
+            </div>
+        <div class="isiBeli">
+            <table>
+                <?php foreach($keranjang as $keranjangsih) : ?>
+                <tr>
+                    <td><?= $keranjangsih["produk"] ?></td>
+                    <td> : 💰<?= $keranjangsih["harga"] ?></td>
+                </tr>
+                <?php endforeach ; ?>
+                <tr>
+                    <td><div class="batasBeli"></div></td>
+                    <td><div class="batasBeli"></div></td>
+                </tr>
+                <tr>
+                    <td>Sisa Dompet</td>
+                    <td> : 💰<?= $sisaDompet ?> </td>
+                </tr>
+            </table>
+        </div>
+        <form action="" method="post">
+            
+        <?php if($sisaDompet === "Tidak Cukup") : ?>
+        <div class="pilihBeli">
+            <button class="batalBeli" name="batalBeli">Batal</button>
+        </div>
+        <?php endif ; ?>
+        <?php if($sisaDompet !== "Tidak Cukup") : ?>
+        <div class="pilihBeli">
+            <button class="batalBeli" name="batalBeli">Batal</button>
+            <button class="jadiBeli" name="jadiBeli">Beli</button>
+        </div>
+        <?php endif ; ?>
+    </div>
+</div>
+<?php endif ; ?>  
+ 
         <!-- main -->
         <div class="data">
             <h1 class="totalHarga">Total Harga :💰 <?= $totalHarga["SUM(harga)"] ?></h1>
