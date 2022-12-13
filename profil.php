@@ -17,7 +17,7 @@ if( !isset( $_SESSION["login"] ) ){
 
 //  toko
 
-$produknya = ambil("SELECT * FROM produk");
+$produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
 
 ?>
 
@@ -61,13 +61,48 @@ $produknya = ambil("SELECT * FROM produk");
             <div class="head">
                 <img src="img_kategori/bawaan.jpg" alt="gambar">
                 <div class="tengah">
-                    <h1><?= $user["nama"] ?></h1>
+                    <div class="masterKananHead">
+                        <div class="kananHead">
+                        <h1><?= $user["nama"] ?></h1>
+                        <?php if($_SESSION["user"] === $id_user) : ?>
+                            <h2 class="editTengah"><a href="editProfil.php" >🔧</a></h2>
+                        <?php endif ; ?>
+                        </div>
+                        <h4>User : Aiman Fadillah</h4>
+                    </div>
+                   
+                    <div class="kiriHead">
+                        <h2 class="dompetTengah"><a href="#" >💰10000</a></h2>
+                        <h2 class="keranjangTengah"><a href="#" >🛒15</a></h2>
+                        <h2 class="tokoTengah"><a href="#" >🏢12</a></h2>
+                        <h2 class="sukaTengah"><a href="#" >💖5</a></h2>
+                    </div>
+
                 </div>
                 
             </div>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias reprehenderit incidunt ipsam, illum inventore hic quo maxime id cum aliquid ab dicta, expedita reiciendis magnam! Soluta magni tenetur accusamus at.</p>
         </div>
         <!-- toko -->
+
+        <div class="tokoProfil">
+        
+            <h1>Barang Toko ini</h1>
+
+            <ul class="unggulan">
+            <?php foreach($produk as $produknya) : ?>
+                <li>
+                    <div class="random_isi">
+                        <a href="#">
+                            <img src="img/<?= $produknya["img"] ?>">
+                            <h4 ><?= $produknya["produk"] ?></h4>
+                            <h3>💰<?= $produknya["harga"] ?></h3>
+                        </a>
+                    </div>
+                </li>
+            <?php endforeach ; ?>
+            </ul>
+        </div>
 
       
 </div>
