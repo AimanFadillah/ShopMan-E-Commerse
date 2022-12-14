@@ -31,7 +31,9 @@ $totalHarga =
 ambil("SELECT SUM(harga),COUNT(produk) FROM produk INNER JOIN keranjang ON keranjang.id_produk = produk.id WHERE keranjang.user = '$user_name' ")[0];
 
 $sisaDompet = $user["dompet"] - $totalHarga["SUM(harga)"];
-
+if($sisaDompet < 0 ){
+    $sisaDompet = "Tidak Cukup";
+}
 
 if(isset($_POST["jadiBeli"])){
    foreach($keranjang as $keranjangYOO){

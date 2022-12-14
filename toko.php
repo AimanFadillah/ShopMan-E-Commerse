@@ -38,7 +38,7 @@ $produknya = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
         <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
             <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
-            <li><a>Edit</a></li>
+            <li><a>Status</a></li>
             <li><a href="toko.php">Toko</a></li>
             <li class="keranjang"><a href="keranjang.php">Keranjang</a></li>
             <li class="logout"><a href="logout.php">Log Out</a></li>

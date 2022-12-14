@@ -135,6 +135,7 @@ function ganti($data){
         $gambar = $gambarlama;
 
     }else{
+        unlink("img/$gambarlama");
         $gambar = upload();
     }
 
@@ -262,6 +263,35 @@ function pembelian($produk,$user){
     hapus($produk);
 
     return mysqli_affected_rows($conn);
+}
+
+function gantiProfil($data){
+    global $conn;
+    $id = $data["idUser"];
+    $namaToko = htmlspecialchars( $data["namaToko"] );
+    $keteranganToko = htmlspecialchars( $data["tentangToko"] );
+    $gambarlama = htmlspecialchars( $data["gambarlama"] );
+
+    if($_FILES["gambar"]["error"] === 4){
+        $gambar = $gambarlama;
+
+    }else{
+        unlink("img/$gambarlama");
+        $gambar = upload();
+    }
+
+    $isi = "UPDATE user SET
+            namaToko = '$namaToko',
+            tentangToko = '$keteranganToko',
+            img = '$gambar'
+            WHERE id = '$id' ;
+            ";
+
+    mysqli_query($conn,$isi);
+
+
+    return mysqli_affected_rows($conn);
+
 }
 
 

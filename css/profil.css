@@ -59,6 +59,7 @@ img{
 .navbar ul li.none{
     background: none;
     box-shadow: none;
+    background-color: none;
     height: 500px;
 }  
 

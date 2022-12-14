@@ -14,7 +14,10 @@ if( !isset( $_SESSION["login"] ) ){
 
  $id_user = $_GET["user"];
  $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
-
+ $user_name = $user["nama"];
+ $keranjangnya = 
+ambil("SELECT COUNT(produk) FROM produk INNER JOIN keranjang ON keranjang.id_produk = produk.id WHERE keranjang.user = '$user_name' ")[0];
+ $produknya = ambil("SELECT COUNT(produk) FROM produk WHERE pemilik = '$id_user' ")[0];
 //  toko
 
 $produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
@@ -39,7 +42,7 @@ $produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
         <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
             <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
-            <li><a>Edit</a></li>
+            <li><a>Status</a></li>
             <li><a href="toko.php">Toko</a></li>
             <li class="keranjang"><a href="keranjang.php">Keranjang</a></li>
             <li class="logout"><a href="logout.php">Log Out</a></li>
@@ -50,7 +53,7 @@ $produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
             <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
             <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
-            <li class="none2"></li>
+            <li class="none"></li>
         </ul>
         <?php endif ; ?>
     </div>
@@ -59,29 +62,29 @@ $produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
 
         <div class="utama">
             <div class="head">
-                <img src="img_kategori/bawaan.jpg" alt="gambar">
+                <img src="img/<?= $user["img"] ?>" alt="gambar">
                 <div class="tengah">
                     <div class="masterKananHead">
                         <div class="kananHead">
-                        <h1><?= $user["nama"] ?></h1>
+                        <h1><?= $user["namaToko"] ?></h1>
                         <?php if($_SESSION["user"] === $id_user) : ?>
                             <h2 class="editTengah"><a href="editProfil.php" >🔧</a></h2>
                         <?php endif ; ?>
                         </div>
-                        <h4>User : Aiman Fadillah</h4>
+                        <h4>User : <?= $user["nama"] ?></h4>
                     </div>
                    
                     <div class="kiriHead">
-                        <h2 class="dompetTengah"><a href="#" >💰10000</a></h2>
-                        <h2 class="keranjangTengah"><a href="#" >🛒15</a></h2>
-                        <h2 class="tokoTengah"><a href="#" >🏢12</a></h2>
+                        <h2 class="dompetTengah"><a href="#" >💰<?= $user["dompet"] ?></a></h2>
+                        <h2 class="keranjangTengah"><a href="#" >🛒<?= $keranjangnya["COUNT(produk)"] ?></a></h2>
+                        <h2 class="tokoTengah"><a href="#" >🏢<?= $produknya["COUNT(produk)"] ?></a></h2>
                         <h2 class="sukaTengah"><a href="#" >💖5</a></h2>
                     </div>
 
                 </div>
                 
             </div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias reprehenderit incidunt ipsam, illum inventore hic quo maxime id cum aliquid ab dicta, expedita reiciendis magnam! Soluta magni tenetur accusamus at.</p>
+            <p><?= $user["tentangToko"] ?></p>
         </div>
         <!-- toko -->
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2022 at 04:27 AM
+-- Generation Time: Dec 14, 2022 at 11:33 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -63,12 +63,10 @@ CREATE TABLE `keranjang` (
 --
 
 INSERT INTO `keranjang` (`id_produk`, `user`) VALUES
-(61, 'aiman'),
-(62, 'ilyas'),
-(63, 'ilyas'),
-(65, 'abyan'),
-(63, 'abyan'),
-(64, 'abyan');
+(74, 'abyan'),
+(91, 'abyan'),
+(92, 'abyan'),
+(93, 'abyan');
 
 -- --------------------------------------------------------
 
@@ -83,13 +81,6 @@ CREATE TABLE `komentar` (
   `id_produk` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `komentar`
---
-
-INSERT INTO `komentar` (`id`, `nama`, `komentar`, `id_produk`) VALUES
-(1, 'aiman', 'bug berhasil dicegah', '60');
-
 -- --------------------------------------------------------
 
 --
@@ -102,20 +93,22 @@ CREATE TABLE `produk` (
   `keterangan` varchar(200) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
   `img` varchar(50) DEFAULT NULL,
-  `kategori` varchar(50) DEFAULT NULL
+  `kategori` varchar(50) DEFAULT NULL,
+  `pemilik` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `kategori`) VALUES
-(60, 'Koala', 'mahal yap', 12000, 'Koala.jpg', 'hewan'),
-(61, 'Jeruk bali', 'yoi', 5000, 'jeruk.jpg', 'makanan'),
-(62, 'Tulip ip ip', 'Harga nya terjakau cuy', 2000, 'Tulips.jpg', 'makanan'),
-(63, 'Bandar', 'yooo', 10000, 'Penguins.jpg', 'hewan'),
-(64, 'Rumah Ytta', 'ya', 2000000, 'Lighthouse.jpg', 'perabotan'),
-(65, 'ikan ubur ubur', 'yooo', 140000, 'Jellyfish.jpg', 'hewan');
+INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `kategori`, `pemilik`) VALUES
+(74, 'Tulip ip ip', 'tuiip,bungan,kucing,', 3000, 'Tulips.jpg', 'obat', '638310'),
+(91, 'Koala', 'suka tidur makan dll', 2000, 'Koala.jpg', 'hewan', '638310'),
+(92, 'Rumah Mas elon', 'rumah paling murah dari mas elon dijamin ori', 1000, 'Lighthouse.jpg', 'perabotan', '638310'),
+(93, 'Ubur Ubur dari tadi', 'suka ditangkep sama spongebob', 2000, 'Jellyfish.jpg', 'hewan', '638310'),
+(94, 'jeruk oren', 'jeruk yang dipetik pilihan', 500, 'jeruk.jpg', 'makanan', '638310'),
+(95, 'Bandar pilihan', 'dapat memberika anda link link pilihan diluar sana', 1000, 'Penguins.jpg', 'hewan', '638310'),
+(101, 'Gunung', 'yooo', 200, 'belakang.jpg', 'perabotan', '638ad16e3383c');
 
 -- --------------------------------------------------------
 
@@ -126,18 +119,24 @@ INSERT INTO `produk` (`id`, `produk`, `keterangan`, `harga`, `img`, `kategori`) 
 CREATE TABLE `user` (
   `id` varchar(50) NOT NULL,
   `nama` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
+  `password` varchar(255) DEFAULT NULL,
+  `dompet` int(11) NOT NULL,
+  `img` varchar(50) NOT NULL,
+  `tentangToko` varchar(255) NOT NULL,
+  `namaToko` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `password`) VALUES
-('638310', 'aiman', '$2y$10$Z.d9UCtPYkhbgJ/9Z5dEiOmhkPlP8.7T7HYrEMb8WmCsY1Fx8uFCi'),
-('6383143', 'ilyas', '$2y$10$PYWzJn2YoAIkLmaywLAaNOi0JqOAyH0CIm2JbU7kpSc6ac94TaQni'),
-('6389c71eb3a66', 'pradika', '$2y$10$APEbC0JFwymoe4Eoq5Ds1usQhA9.O8GnjQ5eokhW3Ii291McdjUMm'),
-('638ad16e3383c', 'abyan', '$2y$10$f2MLud/dWDTsgcvFAnopTezMcYNGho/DCFp5YecwmIsY0U8eZM4A2');
+INSERT INTO `user` (`id`, `nama`, `password`, `dompet`, `img`, `tentangToko`, `namaToko`) VALUES
+('638310', 'aiman', '$2y$10$Z.d9UCtPYkhbgJ/9Z5dEiOmhkPlP8.7T7HYrEMb8WmCsY1Fx8uFCi', 3650, 'bawaan.jpg', 'Tidak ada Tentang Toko', 'aiman'),
+('6383143', 'ilyas', '$2y$10$PYWzJn2YoAIkLmaywLAaNOi0JqOAyH0CIm2JbU7kpSc6ac94TaQni', 2000, 'bawaan.jpg', 'Tidak ada Tentang Toko', 'ilyas'),
+('6389c71eb3a66', 'pradika', '$2y$10$APEbC0JFwymoe4Eoq5Ds1usQhA9.O8GnjQ5eokhW3Ii291McdjUMm', 1000, 'bawaan.jpg', 'Tidak ada Tentang Toko', 'pradika'),
+('638ad16e3383c', 'abyan', '$2y$10$f2MLud/dWDTsgcvFAnopTezMcYNGho/DCFp5YecwmIsY0U8eZM4A2', 1050, 'Screenshot (506).png', 'Toko Murah dan Terpercaya', 'Toko Wilayah'),
+('63933b4fddcc3', 'hani', '$2y$10$.gwLDg185KncFSvSKzCnR.ge/Fn0aC4RTlbufUqEk7XIELKFrHX3a', 500, 'bawaan.jpg', 'Tidak ada Tentang Toko', 'hani'),
+('6395d3c940f92', 'dama', '$2y$10$7QA7gUmQBhNt0Jnp9Pp9jOcBk38c7eCJcbsgVNcC3KgbdCI28KL2O', 2800, 'bawaan.jpg', 'Tidak ada Tentang Toko', 'dama');
 
 --
 -- Indexes for dumped tables
@@ -181,13 +180,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

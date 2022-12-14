@@ -201,8 +201,8 @@
 
     <div class="pembuatProduk">
         <div class="keteranganPembuat">
-        <img src="img_kategori/bawaan.jpg" alt="gambar" class="imgPembuat">
-        <h1><?= $nama_pembuat["nama"]?></h1>
+        <img src="img/<?= $nama_pembuat["img"] ?>" alt="gambar" class="imgPembuat">
+        <h1><?= $nama_pembuat["namaToko"]?></h1>
         </div>
         
     </div>

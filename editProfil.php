@@ -1,6 +1,36 @@
 <?php
 
+require 'fungsi.php';
 
+session_start();
+
+
+    // sesion login
+    if( !isset( $_SESSION["login"] ) ){
+       $_SESSION["login"] = false;
+    }
+
+    if($_SESSION["login"] === false){
+        header("location:login.php");
+        exit();
+    }
+
+
+$idUser = $_SESSION["user"];
+$user = ambil("SELECT * FROM user WHERE id = '$idUser' ")[0];
+
+if( isset( $_POST["kirim"] ) ){
+    if(gantiProfil($_POST) > 0){
+        echo "<script>
+        document.location.href = 'profil.php?user=$idUser' ;
+        </script>";
+    }else{
+        echo "<script>
+            alert('Anda tidak mengedit apapun')
+            document.location.href = 'toko.php' ;
+            </script>";
+    }
+};
     
 
 ?>
@@ -12,37 +42,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profil</title>
-    <link rel="stylesheet" href="ganti.css">
+    <link rel="stylesheet" href="css/ganti.css">
 </head>
-<body>
+<body class="Profil">
     <!-- container -->
-    <div class="container">
-        <h1>Edit Barang</h1>
+    <div class="containerProfil">
+        <h1>Edit Profil</h1>
         <form action="" method="post" enctype="multipart/form-data">
         <div class="mid">
-            <img src="img/<?= $produk["img"] ?>" alt="gambar"><br>
+            <img src="img/<?= $user["img"] ?>" alt="gambar"><br>
             <input type="file" name="gambar" id="gambar"><br><br>
         </div>
-        <input type="hidden" name="id" value="<?= $produk["id"] ?>">
-        <input type="hidden" name="gambarlama" id="gambarlama" value="<?= $produk["img"] ?>">
-        <label for="nama">Nama Produk</label><br>
-        <input type="text" name="nama" id="nama" value="<?= $produk["produk"] ?>" require autocomplete="off">
-        <label for="harga">Harga Produk</label><br>
-        <input type="number" name="harga" id="harga" value="<?= $produk["harga"] ?>" require autocomplete="off"><br><br>
-        <label for="kategori">Kategori</label><br>
-            <select id="kategori" name="kategori">
-                <option value="<?= $produk["kategori"] ?>">"<?= $produk["kategori"] ?>"</option>
-                <option value="eletronik">Elektronik</option>
-                <option value="pakaian">Pakaian</option>
-                <option value="makanan">Makanan</option>
-                <option value="kecantikan">Kecantikan</option>
-                <option value="obat">Obat</option>
-                <option value="mainan">Mainan</option>
-                <option value="Perabotan">Perabotan</option>
-                <option value="hewan">Hewan</option>
-            </select><br><br>
-        <label for="keterangan">Tentang Barang</label><br>
-        <textarea name="keterangan" id="keterangan"><?= // $produk["keterangan"] ?></textarea>
+        <input type="hidden" name="idUser" value="<?= $idUser ?>">
+        <input type="hidden" name="gambarlama" id="gambarlama" value="<?= $user["img"] ?>">
+        <label for="nama">Nama Toko</label><br>
+        <input type="text" name="namaToko" id="nama" value='<?= $user["namaToko"] ?>' require autocomplete="off">
+
+        <label for="keterangan">Tentang Toko</label><br>
+        <textarea name="tentangToko" id="keterangan"><?= $user["tentangToko"] ?></textarea>
         <div class="mid">
             <input type="submit" value="kirim" name="kirim" class="kirim">
         </div>
