@@ -7,6 +7,9 @@
     }else{
         $_SESSION["login"] === true;
     }
+
+    $id = $_GET["id"];
+    $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
     
     if(isset($_SESSION["user"])){
         $id = $_GET["id"];
@@ -15,21 +18,32 @@
         $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
         $user_name = $user["nama"];
         $keranjang = ambil("SELECT * FROM keranjang WHERE id_produk = $id AND user = '$user_name' ");
+        $sisaDompet = $user["dompet"] - $produk["harga"];
+
+        if($sisaDompet < 0){
+            $sisaDompet = "Tidak Cukup";
+        }
     }
 
    
     
-
-
-    $id = $_GET["id"];
-   
-    $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
+    
     $nama_produk = $produk["produk"];
 
     $komentar = ambil("SELECT * FROM komentar WHERE id_produk = '$id' ");
 
+    $id_pembuat = $produk["pemilik"];
+    $nama_pembuat = ambil("SELECT * FROM user WHERE id = '$id_pembuat' ")[0]; 
 
-    
+    // beli
+    $beli = false;
+    if(isset($_POST["beli"])){
+        $beli = true;
+    }
+
+    if(isset($_POST["batalBeli"])){
+        $beli = false;
+    }
     // random
 
     $produk_rekomendasi = ambil("SELECT * FROM produk ORDER BY RAND() LIMIT 5");
@@ -39,6 +53,19 @@
         if(tambahkeranjang($_POST) > 0 ){
             header("Location:produk.php?id=$id");
             exit();
+        }
+    }
+
+    if(isset($_POST["jadiBeli"])){
+        if(pembelian($_POST["idProdukBeli"],$_POST["idPembeli"]) > 0 ){
+            header("Location:index.php");
+            exit();
+        }else{
+            echo "
+                <script>
+                    alert('lah gagal');
+                </script>
+            ";
         }
     }
 
@@ -71,6 +98,52 @@
         <?php endif ; ?>
     </div>
 
+     <!-- beli -->
+     <?php if($beli === true) : ?>
+     <div class="center">
+     <div class="beliProduk">
+        <div class="judulBeli">
+          <h1>Pembelian</h1>
+          <h2>💰<?= $user["dompet"] ?></h2>
+        </div>
+        <div class="isiBeli">
+            <table>
+                <tr>
+                    <td><?= $produk["produk"] ?></td>
+                    <td> : 💰<?= $produk["harga"] ?></td>
+                </tr>
+                <tr>
+                    <td><div class="batasBeli"></div></td>
+                    <td><div class="batasBeli"></div></td>
+                </tr>
+                <tr>
+                    <td>Sisa Dompet</td>
+                    <td> : 💰<?= $sisaDompet ?> </td>
+                </tr>
+            </table>
+        </div>
+        <form action="" method="post">
+            
+        <?php if($sisaDompet === "Tidak Cukup") : ?>
+            <div class="pilihBeli">
+            <button class="batalBeli" name="batalBeli">Batal</button>
+        </div>
+        <?php endif ; ?>
+        <?php if($sisaDompet !== "Tidak Cukup") : ?>
+            <div class="pilihBeli">
+            <input type="hidden" name="idProdukBeli" value="<?= $id ?>">
+            <input type="hidden" name="idPembeli" value="<?= $id_user ?>">
+            <button class="batalBeli" name="batalBeli">Batal</button>
+            <button class="jadiBeli" name="jadiBeli">Beli</button>
+        </div>
+        <?php endif ; ?>
+       
+        </form>
+    </div>
+     </div>
+    <?php endif ; ?>
+
+
     <!-- main -->
 
     <div class="produk">
@@ -85,6 +158,10 @@
                     <div  class="tombol_keranjang">
                     <a id="keranjang" href="login.php">Keranjang</a>
                     </div>
+                <?php } elseif($user_name === $nama_pembuat["nama"]) { ?>
+                    <div  class="tombol_keranjang">
+                    <a id="keranjang" href="keranjang.php">Check Dikeranjang</a>
+                    </div>
                 <?php } elseif(empty($keranjang)) { ?>
                 <div  class="tombol_keranjang">
                 <form action="" method="post">
@@ -98,10 +175,39 @@
                     <a class="sudah" href="keranjang.php">Sudah di Keranjang</a>
                     </div>
                 <?php } ?>
-                <div  class="tombol_beli"><a href="#">Beli</a></div>
+                <?php if($_SESSION["login"] === false) { ?>
+                    <div  class="tombol_beli">
+                        <a href="login.php">Beli</a>
+                    </div>
+                <?php } elseif($user_name === $nama_pembuat["nama"]) { ?>
+                <div  class="tombol_beli">
+                        <a href="toko.php">Check Ditoko</a>
+                    </div>
+                </div>
+                <?php } elseif($_SESSION["login"] === true) { ?>
+                <div  class="tombol_beli">
+                    <form action="" method="post">
+                        <button name="beli">Beli</button>
+                    </form>
+                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
+
+   
+    <!-- pembuat -->
+    <a href="profil.php?user=<?= $produk["pemilik"] ?>">
+
+    <div class="pembuatProduk">
+        <div class="keteranganPembuat">
+        <img src="img/<?= $nama_pembuat["img"] ?>" alt="gambar" class="imgPembuat">
+        <h1><?= $nama_pembuat["namaToko"]?></h1>
+        </div>
+        
+    </div>
+
+    </a>
     
     </div>
 
@@ -122,10 +228,12 @@
                 <div class="atas">
                     <div class="kiri"><h3><?= $komen["nama"] ?></h3></div>
                     <div class="kanan">
-                    <?php if($_SESSION["login"] === true) : ?>  
+                    <?php if($_SESSION["login"] === true) : ?> 
+                        <?php if($user_name === $komen["nama"]) : ?>
                         <a href="editKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>" class="editbutton">Edit</a>
                         <a href="hapusKomen.php?id=<?= $produk["id"] ?>&id_komen=<?= $komen["id"] ?>&nama_komen=<?= $komen["nama"] ?>" onclick="return confirm('Yakin')">Hapus</a>
                         <?php endif ; ?>
+                    <?php endif ; ?>
                     </div>
                 </div>
                 <p><?= $komen["komentar"] ?></p>

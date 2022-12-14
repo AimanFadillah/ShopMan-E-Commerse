@@ -8,6 +8,12 @@ body{
     font-family: sans-serif;
 }
 
+body.Profil{
+    background-color:crimson;
+    font-family: sans-serif;
+}
+
+
 img{
     width: 50%;
     margin: 20px auto;
@@ -26,6 +32,7 @@ img{
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 
 .container h1{
     font-size: 40px;
@@ -93,4 +100,80 @@ img{
     color: white;
 }
 
+/* profil */
 
+.containerProfil{
+    width: 40%;
+    margin: 90px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.containerProfil h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+.containerProfil #gambar{
+    background-color: grey;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 8px;
+}
+
+.containerProfil .mid{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.containerProfil label{
+    font-size: 25px;
+    margin-top: 50px;
+    color: crimson;
+}
+
+.containerProfil input[type="text"]{
+    outline: none;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 2px;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+.containerProfil input[type="number"]{
+    width: 100%;;
+}
+
+.containerProfil select{
+    width: 101%;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.containerProfil select:focus{
+    outline: none;
+}
+
+.containerProfil textarea{
+    width: 101%;
+    height: 150px;
+}
+
+.containerProfil textarea:focus{
+    outline: none;
+}
+
+.containerProfil .kirim {
+    background-color: green;
+    border-radius: 3px;
+    border: 1px solid grey;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-top: 10px;
+    padding: 5px 30px;
+    font-size: 18px;
+    color: white;
+}

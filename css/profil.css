@@ -59,7 +59,8 @@ img{
 .navbar ul li.none{
     background: none;
     box-shadow: none;
-    height: 300px;
+    background-color: none;
+    height: 500px;
 }  
 
 .navbar ul li.kembali{
@@ -128,7 +129,69 @@ li.logout a{
     margin-top: 10px;
 }
 
+.utama .head .tengah {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
+.utama .head .tengah .kananHead{
+    display: flex;
+}
+
+.utama .head .tengah .kiriHead{
+    display: flex;
+}
+
+.utama .head .tengah h2 {
+    margin-top: 5px;
+    margin-right: 4px;
+}
+
+.utama .head .tengah h2.editTengah{
+    margin-top: 13px;
+    margin-left: 10px;
+}
+
+.utama .head .tengah h2.editTengah a{
+    background-color: blue;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.utama .head .tengah h2.keranjangTengah a{
+    background-color: purple;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    font-size: 29px;
+}
+
+.utama .head .tengah h2.tokoTengah a{
+    background-color: aqua;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    font-size: 29px;
+}
+
+.utama .head .tengah h2.sukaTengah a{
+    background-color: salmon;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    font-size: 29px;
+}
+
+.utama .head .tengah h2.dompetTengah a{
+    background-color: yellowgreen;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    font-size: 29px;
+}
 
 .utama p {
     margin-top: 20px;
@@ -221,4 +284,57 @@ li.logout a{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     border-radius: 3px;
     padding: 1px 5px 3px 5px;
+}
+
+/* toko profil */
+
+.tokoProfil {
+    width: 98%;
+    background-color: olivedrab;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.tokoProfil h1 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+.unggulan{
+    display: grid;
+    gap:10px;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
+}
+
+.unggulan li{
+    box-shadow: none;
+}
+
+.random_isi {
+    background-color: white;
+    border: 0.5px solid gold;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;   
+    border-radius: 7px;
+    width: 200px;
+    height: 280px;
+}
+
+.random_isi a img{
+    border-radius: 5px 5px 0 0;
+    box-shadow: none;
+    width: 200px;
+    height: 200px;
+}
+
+.random_isi a h4{
+    margin-left: 10px;
+    color: black;
+}
+
+.random_isi a h3{
+    margin-top: 30px;
+    margin-left: 10px;
+    color :#ee4d2d;
 }

@@ -48,7 +48,8 @@ if(isset($_POST["keyword"]) ){
             <?php endif ; ?>
             <?php if($_SESSION["login"] === true) : ?>    
                 <li class="profil">
-                <a href="profil.php">🏢</a>
+                <a href="profil.php?user=<?= $_SESSION["user"] ?>">🙍‍♂️</a>
+                <a href="toko.php">🏢</a>
                 <a href="keranjang.php">🛒 </a>
                 </li>
             <?php endif ; ?>

@@ -12,27 +12,15 @@ if( !isset( $_SESSION["login"] ) ){
      exit();
  }
 
- $id_user = $_SESSION["user"];
+ $id_user = $_GET["user"];
  $user = ambil("SELECT * FROM user WHERE id = '$id_user' ")[0];
-
- $utama = false;
- $toko = true;
-
-
-// pengendali
- if(isset($_POST["utama"])){
-     $utama = true;
-     $toko = false;
- }
-
- if(isset($_POST["toko"])){
-     $utama = false;
-     $toko = true;
- }
-
+ $user_name = $user["nama"];
+ $keranjangnya = 
+ambil("SELECT COUNT(produk) FROM produk INNER JOIN keranjang ON keranjang.id_produk = produk.id WHERE keranjang.user = '$user_name' ")[0];
+ $produknya = ambil("SELECT COUNT(produk) FROM produk WHERE pemilik = '$id_user' ")[0];
 //  toko
 
-$produknya = ambil("SELECT * FROM produk");
+$produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
 
 ?>
 
@@ -50,61 +38,76 @@ $produknya = ambil("SELECT * FROM produk");
 <!-- main -->
 <div class="container">
     <div class="navbar">
-        <form action="" method="POST">
+        <?php if($_SESSION["user"] === $id_user ) : ?>
         <ul>
             <li class="kembali"><a href="index.php">Kembali</a></li>
-            <li><button name="utama" id="utama">Profil</button></li>
-            <li><a>Edit</a></li>
-            <li><button name="toko" id="toko">Toko</button></li>
+            <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
+            <li><a>Status</a></li>
+            <li><a href="toko.php">Toko</a></li>
             <li class="keranjang"><a href="keranjang.php">Keranjang</a></li>
             <li class="logout"><a href="logout.php">Log Out</a></li>
             <li class="none"></li>
         </ul>
-        </form>
+        <?php endif ; ?>
+        <?php if($_SESSION["user"] !== $id_user ) : ?>
+            <ul>
+            <li class="kembali"><a href="index.php">Kembali</a></li>
+            <li><a href="profil.php?user=<?= $id_user ?>">Profil</a></li>
+            <li class="none"></li>
+        </ul>
+        <?php endif ; ?>
     </div>
     <div class="isi">
         <!-- utama -->
-        <?php if($utama === true) : ?>
+
         <div class="utama">
             <div class="head">
-                <img src="img_kategori/bawaan.jpg" alt="gambar">
+                <img src="img/<?= $user["img"] ?>" alt="gambar">
                 <div class="tengah">
-                    <h1><?= $user["nama"] ?></h1>
+                    <div class="masterKananHead">
+                        <div class="kananHead">
+                        <h1><?= $user["namaToko"] ?></h1>
+                        <?php if($_SESSION["user"] === $id_user) : ?>
+                            <h2 class="editTengah"><a href="editProfil.php" >🔧</a></h2>
+                        <?php endif ; ?>
+                        </div>
+                        <h4>User : <?= $user["nama"] ?></h4>
+                    </div>
+                   
+                    <div class="kiriHead">
+                        <h2 class="dompetTengah"><a href="#" >💰<?= $user["dompet"] ?></a></h2>
+                        <h2 class="keranjangTengah"><a href="#" >🛒<?= $keranjangnya["COUNT(produk)"] ?></a></h2>
+                        <h2 class="tokoTengah"><a href="#" >🏢<?= $produknya["COUNT(produk)"] ?></a></h2>
+                        <h2 class="sukaTengah"><a href="#" >💖5</a></h2>
+                    </div>
+
                 </div>
                 
             </div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias reprehenderit incidunt ipsam, illum inventore hic quo maxime id cum aliquid ab dicta, expedita reiciendis magnam! Soluta magni tenetur accusamus at.</p>
+            <p><?= $user["tentangToko"] ?></p>
         </div>
-        <?php endif ; ?>
         <!-- toko -->
-        <?php if($toko === true) : ?>
-        <div class="toko">
-             <div class="navbarToko">
-                 <h1>🏢Toko</h1>
-                 <a class="tambahToko" href="tambah.php">➕Tambah</a>
-             </div>
-             <ul>
-                 <?php foreach($produknya as $produk) : ?>
-                 <li>
-                 <a href="#">
-                    <div class="barangToko">
-                        <div class="kiriToko">
-                        <img class="gambarToko" src="img/<?= $produk["img"] ?>" alt="gambar">
-                        <h1><?= $produk["produk"] ?></h1>
-                        </div>
-                        <div class="kananToko">
-                            <h1 class="HargaToko"> <?= $produk["kategori"] ?> | 💰<?= $produk["harga"] ?></h1>
-                            <a class="editToko" href="ganti.php?id=<?= $produk["id"] ?>">🔧</a>
-                            <a class="hapusToko" href="delete.php?id=<?= $produk["id"] ?>" onclick="return confirm('Yakin')">❌</a>
-                        </div>
+
+        <div class="tokoProfil">
+        
+            <h1>Barang Toko ini</h1>
+
+            <ul class="unggulan">
+            <?php foreach($produk as $produknya) : ?>
+                <li>
+                    <div class="random_isi">
+                        <a href="#">
+                            <img src="img/<?= $produknya["img"] ?>">
+                            <h4 ><?= $produknya["produk"] ?></h4>
+                            <h3>💰<?= $produknya["harga"] ?></h3>
+                        </a>
                     </div>
-                 </a>
                 </li>
-                <?php endforeach ; ?>
-             </ul>
+            <?php endforeach ; ?>
+            </ul>
         </div>
-        <?php endif ; ?>
-    </div>
+
+      
 </div>
 
 

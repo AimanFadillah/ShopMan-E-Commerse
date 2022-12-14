@@ -3,18 +3,18 @@
 $conn = mysqli_connect('localhost','root','','shop');
 
 // BISI ADA YANG MASUK
-if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
-        $url = "https://";   
-    else {
-        $url = "http://";   
-        $url.= $_SERVER['HTTP_HOST'];   
-        $url.= $_SERVER['REQUEST_URI'];    
-    }
+// if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+//         $url = "https://";   
+//     else {
+//         $url = "http://";   
+//         $url.= $_SERVER['HTTP_HOST'];   
+//         $url.= $_SERVER['REQUEST_URI'];    
+//     }
 
-    if( $url === "http://localhost/shopman/fungsi.php"){
-        header("Location:index.php");
-        exit();
-    }
+//     if( $url === "http://localhost/shopman/fungsi.php"){
+//         header("Location:index.php");
+//         exit();
+//     }
 
 function ambil($query){
     global $conn;
@@ -32,6 +32,7 @@ function tambah($tambah){
     $harga = htmlspecialchars( $tambah["harga"] );
     $tentang = htmlspecialchars( $tambah["tentang_produk"] );
     $kategori = $tambah["kategori"];
+    $pemilik = $tambah["pemilik"];
     $gambar = upload();
 
     if(!$gambar){
@@ -40,7 +41,7 @@ function tambah($tambah){
 
     
     // menambahkan isi dari tabel produk
-    $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$kategori')";
+    $data = "INSERT INTO produk VALUES ('','$produk','$tentang','$harga','$gambar','$kategori','$pemilik')";
     mysqli_query($conn,$data);
 
 
@@ -99,7 +100,8 @@ function upload(){
 function cari($data){
     $produk = "SELECT * FROM produk WHERE produk LIKE '%$data%' OR
                                        harga LIKE '%$data%' OR
-                                       kategori LIKE '%$data%' ";
+                                       kategori LIKE '%$data%' OR 
+                                       keterangan LIKE '%$data%' ";
     
     return ambil($produk);
 }
@@ -133,6 +135,7 @@ function ganti($data){
         $gambar = $gambarlama;
 
     }else{
+        unlink("img/$gambarlama");
         $gambar = upload();
     }
 
@@ -218,7 +221,7 @@ function daftar($data){
     $idUser = uniqid();
     $password = password_hash($password,PASSWORD_DEFAULT);
 
-    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password')");
+    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password',2000)");
 
     return mysqli_affected_rows($conn);
 
@@ -240,5 +243,57 @@ function hapusKeranjang($id_produk,$user){
     mysqli_query($conn,"DELETE FROM keranjang WHERE id_produk = $id_produk AND user = '$user' ");
     return mysqli_affected_rows($conn);
 }
+
+function pembelian($produk,$user){
+    global $conn;
+    $produkBeli = ambil("SELECT * FROM produk WHERE id = $produk ")[0];
+    $idPemilik = $produkBeli["pemilik"];
+    // user
+    $userBeli = ambil("SELECT * FROM user WHERE id = '$user' ")[0];
+    $userPemilik = ambil("SELECT * FROM user WHERE id = '$idPemilik' ")[0];
+    // aksi
+    $dompet = $userBeli["dompet"];
+    $harga = $produkBeli["harga"];
+    $untung =  $userPemilik["dompet"] + $produkBeli["harga"];
+    $sisa = $dompet - $harga;
+   
+
+    mysqli_query($conn,"UPDATE user SET dompet = $sisa WHERE id = '$user' ");
+    mysqli_query($conn,"UPDATE user SET dompet = $untung WHERE id = '$idPemilik' ");
+    hapus($produk);
+
+    return mysqli_affected_rows($conn);
+}
+
+function gantiProfil($data){
+    global $conn;
+    $id = $data["idUser"];
+    $namaToko = htmlspecialchars( $data["namaToko"] );
+    $keteranganToko = htmlspecialchars( $data["tentangToko"] );
+    $gambarlama = htmlspecialchars( $data["gambarlama"] );
+
+    if($_FILES["gambar"]["error"] === 4){
+        $gambar = $gambarlama;
+
+    }else{
+        unlink("img/$gambarlama");
+        $gambar = upload();
+    }
+
+    $isi = "UPDATE user SET
+            namaToko = '$namaToko',
+            tentangToko = '$keteranganToko',
+            img = '$gambar'
+            WHERE id = '$id' ;
+            ";
+
+    mysqli_query($conn,$isi);
+
+
+    return mysqli_affected_rows($conn);
+
+}
+
+
 
 ?>

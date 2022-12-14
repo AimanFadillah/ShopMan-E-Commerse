@@ -126,6 +126,13 @@ img{
     padding: 30px;
 }
 
+.list_akhir .tombol_beli button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+
 .list_akhir .tombol_keranjang{
     font-size: 18px;
     width: 50%;
@@ -162,6 +169,108 @@ img{
     font-weight: 100;
 }
 
+/* Pembuat */
+.pembuatProduk{
+    width: 80%;
+    margin: 0px auto;
+    background-color: white;
+    border-radius: 5px;
+    padding: 8px 20px 8px 20px;
+    margin-top: -18px;
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pembuatProduk h1{
+    margin-bottom: 15px;
+}
+
+.pembuatProduk .keteranganPembuat{
+    display: flex;
+    align-items: center;
+}
+
+.pembuatProduk .keteranganPembuat .imgPembuat{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 50%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.pembuatProduk .keteranganPembuat h1{
+   margin-top: 20px;
+   color: purple;
+}
+
+/* beli */
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.beliProduk {
+    position: fixed;
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+}
+
+.judulBeli{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    background-color: yellowgreen;
+    border-radius: 5px 5px 0 0;
+    color: white;
+}
+
+
+.batasBeli{
+    padding: 1px;
+    background-color: yellowgreen;
+}
+
+.isiBeli {
+    background-color: white;
+    padding: 20px 10px 20px 10px;
+    font-weight: bold;
+    font-size: 23px;
+} 
+
+.pilihBeli{
+    display: flex;
+    padding: 10px 15px 10px 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: yellowgreen;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.pilihBeli button{
+    background: none;
+    border: none;
+}
+
+.pilihBeli button.batalBeli{
+    background-color: red;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    padding: 8px 13px 8px 13px;
+}
+
+
+.pilihBeli button.jadiBeli{
+    background-color: #ee4d2d;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px 8px 15px;
+}
 
 /* komentar */
 

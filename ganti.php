@@ -23,12 +23,12 @@ $produk = ambil("SELECT * FROM produk WHERE id = $id")[0];
 if( isset( $_POST["kirim"] ) ){
     if(ganti($_POST) > 0){
         echo "<script>
-        document.location.href = 'profil.php' ;
+        document.location.href = 'toko.php' ;
         </script>";
     }else{
         echo "<script>
             alert('Anda tidak mengedit apapun')
-            document.location.href = 'profil.php' ;
+            document.location.href = 'toko.php' ;
             </script>";
     }
 };
