@@ -221,7 +221,7 @@ function daftar($data){
     $idUser = uniqid();
     $password = password_hash($password,PASSWORD_DEFAULT);
 
-    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password',2000)");
+    mysqli_query($conn,"INSERT INTO user VALUES('$idUser','$username','$password',2000,'bawaan.jpg','tidak tentang toko','$username')");
 
     return mysqli_affected_rows($conn);
 

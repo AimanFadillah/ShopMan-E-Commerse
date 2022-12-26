@@ -87,7 +87,12 @@ $produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
             <p><?= $user["tentangToko"] ?></p>
         </div>
         <!-- toko -->
-
+        <?php if(empty($produk)) : ?>
+            <div class="tokoProfil">
+                <h1>Belum ada barang ditoko ini</h1>
+            </div>
+        <?php endif ; ?>
+        <?php if(!empty($produk)) :?>
         <div class="tokoProfil">
         
             <h1>Barang Toko ini</h1>
@@ -106,7 +111,7 @@ $produk = ambil("SELECT * FROM produk WHERE pemilik = '$id_user' ");
             <?php endforeach ; ?>
             </ul>
         </div>
-
+        <?php endif ; ?>
       
 </div>
 
